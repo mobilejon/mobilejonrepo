@@ -4,5 +4,5 @@ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resourc
 #  AddLocalAccountRDP.sh
 #  
 #
-#  Created by Jon Towels - ADMIN on 9/29/18.
+#  Created by Jon Towles - ADMIN on 9/29/18.
 #  
