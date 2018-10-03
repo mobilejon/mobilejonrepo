@@ -1,0 +1,5 @@
+##Create a CSR with SHA-2##
+openssl req -new -sha256 -newkey rsa:2048 -keyout test.key -subj "/C=US/ST=MA/L=Boston/O=ACME/OU=IT/CN=test.test.com" -reqexts SAN -extensions SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:test.test.com,DNS:test2.test.com,DNS:test3.test.com") ‌) -nodes -out test.csr -sha256
+
+##Create a PFX##
+openssl pkcs12 -export -out test.pfx -inkey test.key -in test.cer -certfile cert-chain.pem
