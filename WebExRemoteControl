@@ -1,0 +1,40 @@
+<dict>
+    
+			<key>Services</key>
+			<dict>
+				<key>Accessibility</key>
+				<array>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "com.cisco.Cisco Webex Meetings" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = DE8Y96K9QP</string>
+						<key>Comment</key>
+						<string>Allow Accessibility control for Cisco Webex Meetings</string>
+                        <key>IdentifierType</key>
+                        <string>bundleID</string>
+						<key>Identifier</key>
+						<string>com.cisco.Cisco Webex Meetings</string>
+						
+		</dict>
+	</array>
+    </dict>
+	<key>PayloadDescription</key>
+	<string>Contoso TCC WebEx</string>
+	<key>PayloadDisplayName</key>
+	<string>TCC WebEx</string>
+	<key>PayloadIdentifier</key>
+	<string>com.contoso.webex</string>
+	<key>PayloadOrganization</key>
+	<string>Contoso</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadScope</key>
+	<string>system</string>
+	<key>PayloadType</key>
+	<string>com.apple.TCC.configuration-profile-policy</string>
+	<key>PayloadUUID</key>
+	<string>4C14D51C-D8CC-11E8-A468-186590DF06F9</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
