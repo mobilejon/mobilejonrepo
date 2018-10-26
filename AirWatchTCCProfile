@@ -1,0 +1,667 @@
+<dict>
+    
+    <key>Services</key>
+    
+    <dict>
+        
+        <key>SystemPolicySysAdminFiles</key>
+        
+        <array>
+            
+            <dict>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent to access files used in system administration</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier airwatchd and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/airwatchd</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow airwatchd to access files used in system administration</string>
+                
+            </dict>
+            
+        </array>
+        
+        <key>SystemPolicyAllFiles</key>
+        
+        <array>
+            
+            <dict>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent to access all protected files</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier airwatchd and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/airwatchd</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow airwatchd to access all protected files</string>
+                
+            </dict>
+            
+        </array>
+        
+        <key>Accessibility</key>
+        
+        <array>
+            
+            <dict>
+            
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier airwatchd and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/airwatchd</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow airwatchd in Accessibility</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent in Accessibility</string>
+                
+            </dict>
+            
+        </array>
+        
+        <key>PostEvent</key>
+        
+        <array>
+            
+            <dict>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier airwatchd and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/airwatchd</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow airwatchd to send PostEvents</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent to send PostEvents</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier AWRemoteManagementDaemon and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/AWRemoteManagementDaemon</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow AWRemoteManagementDaemon to send PostEvents</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier AWRemoteTunnelAgent and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/AWRemoteTunnelAgent</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow AWRemoteTunnelAgent to send PostEvents</string>
+                
+            </dict>
+            
+        </array>
+        
+        <key>AppleEvents</key>
+        
+        <array>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.apple.finder</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.apple.finder" and anchor apple</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent to send AppleEvents to Finder.app</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.apple.systemuiserver</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.apple.systemuiserver" and anchor apple</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent to send AppleEvents to SystemUIServer.app</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.apple.systempreferences</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.apple.systempreferences" and anchor apple</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent to send AppleEvents to System Preferences.app</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.apple.systemevents</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.apple.systemevents" and anchor apple</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent to send AppleEvents to System Events.app</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.apple.mail</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.apple.mail" and anchor apple</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent to send AppleEvents to Mail.app</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>com.airwatch.mac.agent</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier "com.airwatch.mac.agent" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.microsoft.Outlook</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.microsoft.Outlook" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow VMware AirWatch Agent to send AppleEvents to Microsoft Outlook.app</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/airwatchd</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier airwatchd and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.apple.finder</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.apple.finder" and anchor apple</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow airwatchd to send AppleEvents to Finder.app</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/airwatchd</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier airwatchd and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.apple.systemuiserver</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.apple.systemuiserver" and anchor apple</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow airwatchd to send AppleEvents to SystemUIServer.app</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/airwatchd</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier airwatchd and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.microsoft.Outlook</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.microsoft.Outlook" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow airwatchd to send AppleEvents to Microsoft Outlook.app</string>
+                
+            </dict>
+            
+            <dict>
+                
+                <key>Identifier</key>
+                
+                <string>/Library/Application Support/AirWatch/airwatchd</string>
+                
+                <key>IdentifierType</key>
+                
+                <string>path</string>
+                
+                <key>CodeRequirement</key>
+                
+                <string>anchor apple generic and identifier airwatchd and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S2ZMFGQM93)</string>
+                
+                <key>AEReceiverIdentifier</key>
+                
+                <string>com.apple.systemevents</string>
+                
+                <key>AEReceiverIdentifierType</key>
+                
+                <string>bundleID</string>
+                
+                <key>AEReceiverCodeRequirement</key>
+                
+                <string>identifier "com.apple.systemevents" and anchor apple</string>
+                
+                <key>Allowed</key>
+                
+                <true/>
+                
+                <key>Comment</key>
+                
+                <string>Allow airwatchd to send AppleEvents to System Events.app</string>
+                
+            </dict>
+            
+        </array>
+        
+    </dict>
+    
+    <key>PayloadDescription</key>
+    
+    <string>TCC Payload for AirWatch Agent</string>
+    
+    <key>PayloadDisplayName</key>
+    
+    <string>TCC Payload for AirWatch Agent</string>
+    
+    <key>PayloadIdentifier</key>
+    
+    <string>com.vmware.agent.tcc</string>
+    
+    <key>PayloadOrganization</key>
+    
+    <string>VMware</string>
+    
+    <key>PayloadType</key>
+    
+    <string>com.apple.TCC.configuration-profile-policy</string>
+    
+    <key>PayloadUUID</key>
+    
+    <string>0D4540F5-35EC-45B8-9F11-XXXXXXXXXXXX</string>
+    
+    <key>PayloadVersion</key>
+    
+    <integer>1</integer>
+    
+</dict>
