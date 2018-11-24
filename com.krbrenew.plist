@@ -13,8 +13,8 @@
 	<key>StartInterval</key>
 	<integer>600</integer>
 	<key>StandardErrorPath</key>
-	<string>/tmp/com.krbnew.daemon.err</string>
+	<string>/usr/local/com.krbnew.daemon.err</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/com.krbnew.daemon.out</string>
+	<string>/usr/local/com.krbnew.daemon.out</string>
 </dict>
 </plist>
