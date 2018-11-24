@@ -11,8 +11,8 @@
 	<key>RunAtLoad</key>
 	<true/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/com.anyconnect.daemon.err</string>
+	<string>/usr/local/com.anyconnect.daemon.err</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/com.anyconnect.daemon.out</string>
+	<string>/usr/local/com.anyconnect.daemon.out</string>
 </dict>
 </plist>
