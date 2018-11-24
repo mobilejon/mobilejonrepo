@@ -11,8 +11,8 @@
 	<key>RunAtLoad</key>
 	<true/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/com.chrome.daemon.err</string>
+	<string>/usr/local/com.chrome.daemon.err</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/com.chrome.daemon.out</string>
+	<string>/usr/local/com.chrome.daemon.out</string>
 </dict>
 </plist>
