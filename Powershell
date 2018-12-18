@@ -1,0 +1,2 @@
+##Dump a Group's Members including nested members and update their UPN##
+Get-ADGroupMember "Test Users" -Recursive | foreach{Get-ADUser -Identity $_.samaccountname -Properties * | Set-AdUser -Identity $_.samaccountname -UserPrincipalName $_.mail}
