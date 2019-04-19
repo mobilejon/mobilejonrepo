@@ -1,3 +1,6 @@
+$serial = Get-WmiObject -Class win32_bios | select serialnumber
+$serialnumber = $serial.serialnumber
+Rename-Computer TALBOTS-$serialnumber
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module -Name PSWindowsUpdate -RequiredVersion 2.0.0.4 -Force
 Import-Module PSWindowsUpdate -Force
