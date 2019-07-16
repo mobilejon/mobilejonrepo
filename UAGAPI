@@ -1,0 +1,4150 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.2"
+  title: "Unified Access Gateway REST API"
+basePath: "/rest"
+tags:
+- name: "AdminUserSettings"
+- name: "AuthMethodSettings"
+- name: "CustomBranding"
+- name: "DevicePolicySettings"
+- name: "EdgeServiceSettings"
+- name: "GeneralSettings"
+- name: "IdentityProviderExternalMetadata"
+- name: "IdentityProviderMetadata"
+- name: "JWTSettings"
+- name: "KerberosSettings"
+- name: "LoadBalancerSettings"
+- name: "LogOperations"
+- name: "NicSettings"
+- name: "ServiceProviderExternalMetadataResource"
+- name: "ServiceProviderMetadata"
+- name: "UAGSettings"
+- name: "ServerCertificate"
+- name: "SystemSettings"
+paths:
+  /v1/config/authmethod/password-auth:
+    get:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Get authentication method settings for the password-auth method"
+      description: "Gets authentication method settings for the password-auth authentication\
+        \ method."
+      operationId: "getAuthMethodSettingsPasswordIdp"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PasswordIdpMethodSettings"
+    put:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Update authentication method settings for the password-auth method"
+      description: "Updates authentication method settings for the password-auth authentication\
+        \ method."
+      operationId: "putAuthMethodSettingsPasswordIdp"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Authentication method settings"
+        required: false
+        schema:
+          $ref: "#/definitions/PasswordIdpMethodSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PasswordIdpMethodSettings"
+  /v1/config/authmethod/rsaaa-auth:
+    get:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Get authentication method settings for the rsaaa-auth method"
+      description: "Gets authentication method settings for the rsaaa-auth authentication\
+        \ method."
+      operationId: "getAuthMethodSettingsRSAAAIdp"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RSAAAIdpMethodSettings"
+    put:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Update authentication method settings for the rsaaa-auth method"
+      description: "Updates authentication method settings for the rsaaa-auth authentication\
+        \ method."
+      operationId: "putAuthMethodSettingsRSAAAIdp"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Authentication method settings"
+        required: false
+        schema:
+          $ref: "#/definitions/RSAAAIdpMethodSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RSAAAIdpMethodSettings"
+  /v1/config/authmethod/securid-auth:
+    get:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Get authentication method settings for the securid-auth method"
+      description: "Gets authentication method settings for the securid-auth authentication\
+        \ method."
+      operationId: "getAuthMethodSettingsSecurIDIdp"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SecurIDIdpMethodSettings"
+    put:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Update authentication method settings for the securid-auth method"
+      description: "Updates authentication method settings for the securid-auth authentication\
+        \ method."
+      operationId: "putAuthMethodSettingsSecurIDIdp"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Authentication method settings"
+        required: false
+        schema:
+          $ref: "#/definitions/SecurIDIdpMethodSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SecurIDIdpMethodSettings"
+  /v1/config/authmethod/radius-auth:
+    get:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Get authentication method settings for the radius-auth method"
+      description: "Gets authentication method settings for the radius-auth authentication\
+        \ method."
+      operationId: "getAuthMethodSettingsRadiusAuth"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RadiusAuthMethodSettings"
+    put:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Update authentication method settings for the radius-auth method"
+      description: "Updates authentication method settings for the radius-auth authentication\
+        \ method."
+      operationId: "putAuthMethodSettingsRadiusAuth"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Authentication method settings"
+        required: false
+        schema:
+          $ref: "#/definitions/RadiusAuthMethodSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RadiusAuthMethodSettings"
+  /v1/config/authmethod/certificate-auth:
+    get:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Get authentication method settings for the certificate-auth method"
+      description: "Gets authentication method settings for the certificate-auth authentication\
+        \ method."
+      operationId: "getAuthMethodSettingsCertificateAuth"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/CertificateAuthMethodSettings"
+    put:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Update authentication method settings for the certificate-auth method"
+      description: "Updates authentication method settings for the certificate-auth\
+        \ authentication method."
+      operationId: "putAuthMethodSettingsCertificateAuth"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Authentication method settings"
+        required: false
+        schema:
+          $ref: "#/definitions/CertificateAuthMethodSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/CertificateAuthMethodSettings"
+  /v1/config/adminusers/{id}:
+    get:
+      tags:
+      - "AdminUserSettings"
+      summary: "Get details of a single user."
+      description: "Get the details of a single Admin user."
+      operationId: "getAdminUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "UAG Admin ID"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AdminUser"
+    delete:
+      tags:
+      - "AdminUserSettings"
+      summary: "Delete a User"
+      description: "Delete a UAG Admin user by ID"
+      operationId: "deleteAdminUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "UAG Admin username"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AdminUser"
+  /v1/config/adminusers:
+    get:
+      tags:
+      - "AdminUserSettings"
+      summary: "Get all UAG Admin Users"
+      description: "Get the list of all UAG Admin Users"
+      operationId: "getAllAdminUsers"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AdminUsersList"
+    post:
+      tags:
+      - "AdminUserSettings"
+      summary: "Update admin user"
+      description: "Update a UAG Admin user"
+      operationId: "updateAdminUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "UAG Admin user"
+        required: false
+        schema:
+          $ref: "#/definitions/ModifiedAdminUser"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ModifiedAdminUser"
+    put:
+      tags:
+      - "AdminUserSettings"
+      summary: "Create new user"
+      description: "Create a new UAG Admin user"
+      operationId: "createAdminUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "UAG Admin user"
+        required: false
+        schema:
+          $ref: "#/definitions/AdminUser"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AdminUser"
+  /v1/config/adminusers/privileges/{id}:
+    get:
+      tags:
+      - "AdminUserSettings"
+      summary: "Get Roles for user"
+      description: "Get the list of roles for specified admin user"
+      operationId: "getAdminPrivileges"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "UAG Admin username"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+  /v1/config/adminusers/change-password:
+    post:
+      tags:
+      - "AdminUserSettings"
+      summary: "Change user password."
+      description: "This will take user, old password and new password as parameter"
+      operationId: "changeUserPassword"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Change Password settings"
+        required: false
+        schema:
+          $ref: "#/definitions/ChangePasswordSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ChangePasswordSettings"
+  /v1/config/adminusers/logAdminUserAction/{action}:
+    get:
+      tags:
+      - "AdminUserSettings"
+      summary: "Logs the login/logout adminui action."
+      description: "This will logs the login/logout adminui action in audit.log."
+      operationId: "logLoginAction"
+      consumes:
+      - "application/json"
+      produces:
+      - "text/plain"
+      parameters:
+      - name: "action"
+        in: "path"
+        description: "Login action"
+        required: true
+        type: "string"
+        enum:
+        - "LOGIN"
+        - "LOGOUT"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+  /v1/config/authmethod/{name}:
+    get:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Get authentication method settings"
+      description: "Gets authentication method settings for the specified authentication\
+        \ method."
+      operationId: "getAuthMethodSettings"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "name"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "string"
+    put:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Update authentication method settings"
+      description: "Endpoint for updating the settings for an authentication method."
+      operationId: "updateAuthMethodSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Authentication method settings"
+        required: false
+        schema:
+          type: "object"
+          additionalProperties:
+            type: "string"
+      - name: "name"
+        in: "path"
+        description: "Authentication method name"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "string"
+  /v1/config/authmethod:
+    get:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Get all authentication method settings"
+      description: "Get all the authentication method settings."
+      operationId: "getAllAuthMethodSettings"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AuthMethodSettingsList"
+  /v1/config/authmethod/reset/{name}:
+    put:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Reset required auth method settings"
+      description: "resets the auth adapter settings."
+      operationId: "resetAuthMethodSettings"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "name"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/authmethod/ocsp/certificate:
+    put:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Upload OCSP certificate"
+      description: "This operation is valid only for certificate authentication."
+      operationId: "uploadOcspCertificate"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Certificate in PEM format"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/authmethod/ocsp/fileNames:
+    get:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Get all uploaded OCSP certificate"
+      description: "This operation is valid only for certificate authentication."
+      operationId: "getAllUploadedOcspCertificates"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/authmethod/ocsp:
+    delete:
+      tags:
+      - "AuthMethodSettings"
+      summary: "Delete uploaded OCSP responder Certificate."
+      description: "This operation is valid only for certificate authentication"
+      operationId: "deleteUploadedOcspCertificate"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "fileName"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/customBranding/saveCustomBranding:
+    put:
+      tags:
+      - "CustomBranding"
+      summary: "saves custom branding resources"
+      description: "saves custom branding resources"
+      operationId: "saveCustomBrandingSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "List of custom branding resources"
+        required: false
+        schema:
+          $ref: "#/definitions/CustomBrandingSettings"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/customBranding:
+    get:
+      tags:
+      - "CustomBranding"
+      summary: "Get all custom branding details"
+      description: "Returns custom branding settings."
+      operationId: "getCustomBrandingResources"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/CustomBrandingSettings"
+  /v1/config/devicepolicy/configured:
+    get:
+      tags:
+      - "DevicePolicySettings"
+      summary: "Get all configured device policy check service providers."
+      description: ""
+      operationId: "getAllDevicePolicyProvidersConfigured"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/DevicePolicySettingsList"
+  /v1/config/devicepolicy/{name}:
+    get:
+      tags:
+      - "DevicePolicySettings"
+      summary: "Get all device policies configured."
+      description: "Get all device policies service providers configured."
+      operationId: "getDevicePolicySettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "Name of the device policy service provider."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/DevicePolicySettings"
+    delete:
+      tags:
+      - "DevicePolicySettings"
+      summary: "Delete a device policy check service provider."
+      description: "Delete a configured device policy check service provider."
+      operationId: "deleteDevicePolicySettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "Name of the device policy check provider"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/DevicePolicySettings"
+  /v1/config/devicepolicy:
+    put:
+      tags:
+      - "DevicePolicySettings"
+      summary: "Add or update device policy check service provider."
+      description: ""
+      operationId: "addDevicePolicy"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Device policy check service provider settings"
+        required: false
+        schema:
+          $ref: "#/definitions/DevicePolicySettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/DevicePolicySettings"
+  /v1/config/devicepolicy/available:
+    get:
+      tags:
+      - "DevicePolicySettings"
+      summary: "Get all device policy service providers to be configured."
+      description: "Get all device policy service providers to be configured."
+      operationId: "getAllConfiguredDevicePolicyProviders"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/DevicePolicySettings"
+  /v1/config/edgeservice/{edgeServiceType}/{instanceId}:
+    get:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Get edge service settings for a given instance ID"
+      description: "Gets edge service settings for the specified type and instance\
+        \ ID. This is used for edge services where multiple instances of same edge\
+        \ service can be configured"
+      operationId: "getEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "edgeServiceType"
+        in: "path"
+        description: "Type of edge service"
+        required: true
+        type: "string"
+        enum:
+        - "WEB_REVERSE_PROXY"
+      - name: "instanceId"
+        in: "path"
+        description: "Instance ID of edge service"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/EdgeServiceSettings"
+    delete:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Deletes edge service settings"
+      description: "Deletes edge service settings for a specified type and instance\
+        \ ID"
+      operationId: "deleteEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "edgeServiceType"
+        in: "path"
+        description: "Type of edge service"
+        required: true
+        type: "string"
+        enum:
+        - "WEB_REVERSE_PROXY"
+      - name: "instanceId"
+        in: "path"
+        description: "Instance ID of edge service"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/EdgeServiceSettingsList"
+  /v1/config/edgeservice/view:
+    put:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Create or update View edge server settings"
+      description: "Explicit endpoint for creating a View edge service settings if\
+        \ it does not exist, otherwise update the existing one."
+      operationId: "createOrUpdateViewEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "View settings"
+        required: false
+        schema:
+          $ref: "#/definitions/ViewEdgeServiceSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ViewEdgeServiceSettings"
+  /v1/config/edgeservice/webreverseproxy:
+    put:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Create or update Workspace Portal edge server settings"
+      description: "Explicit endpoint for creating a Workspace Portal edge service\
+        \ settings if it does not exist, otherwise update the existing one."
+      operationId: "createOrUpdateWsPortalEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Workspace settings"
+        required: false
+        schema:
+          $ref: "#/definitions/WsPortalEdgeServiceSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/WsPortalEdgeServiceSettings"
+  /v1/config/edgeservice/tunnelgateway:
+    put:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Create or update Airwatch Tunnel edge server settings"
+      description: "Explicit endpoint for creating a Airwatch Tunnel Server edge service\
+        \ settings if it does not exist, otherwise update the existing one."
+      operationId: "createOrUpdateAirWatchTunnelServerEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Tunnel Gateway settings"
+        required: false
+        schema:
+          $ref: "#/definitions/AirWatchTunnelServerEdgeServiceSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AirWatchTunnelServerEdgeServiceSettings"
+  /v1/config/edgeservice/tunnelproxy:
+    put:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Create or update Airwatch Tunnel proxy settings"
+      description: "Explicit endpoint for creating a Airwatch Tunnel Proxy edge service\
+        \ settings if it does not exist, otherwise update the existing one."
+      operationId: "createOrUpdateAirWatchTunnelProxyEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Tunnel Proxy settings"
+        required: false
+        schema:
+          $ref: "#/definitions/AirWatchTunnelProxyEdgeServiceSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AirWatchTunnelProxyEdgeServiceSettings"
+  /v1/config/edgeservice/seg:
+    put:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Create or update Airwatch SEG settings"
+      description: "Explicit endpoint for creating a Airwatch SEG edge service settings\
+        \ if it does not exist, otherwise update the existing one."
+      operationId: "createOrUpdateAirWatchSEGEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "SEG settings"
+        required: false
+        schema:
+          $ref: "#/definitions/AirWatchSEGEdgeServiceSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AirWatchSEGEdgeServiceSettings"
+  /v1/config/edgeservice/contentgateway:
+    put:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Create or update Airwatch Content Gateway settings"
+      description: "Explicit endpoint for creating a Airwatch Content Gateway edge\
+        \ service settings if it does not exist, otherwise update the existing one."
+      operationId: "createOrUpdateAirWatchCGEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Content Gateway settings"
+        required: false
+        schema:
+          $ref: "#/definitions/AirWatchCGEdgeServiceSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AirWatchCGEdgeServiceSettings"
+  /v1/config/edgeservice:
+    get:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Get all edge service settings"
+      description: "Get all the edge service settings."
+      operationId: "getAllEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/EdgeServiceSettingsList"
+  /v1/config/edgeservice/findConfiguredEdgeServicesAndAuthMethods:
+    get:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Find the status of configured edge services and auth methods"
+      description: "Gets list of edge services and auth methods with flag to check\
+        \ if it is enabled."
+      operationId: "getEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ConfiguredEdgeServicesAndAuthMethodList"
+  /v1/config/edgeservice/{edgeServiceType}:
+    get:
+      tags:
+      - "EdgeServiceSettings"
+      summary: "Get edge service settings"
+      description: "Gets edge service settings for the specified type."
+      operationId: "getEdgeServiceSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "edgeServiceType"
+        in: "path"
+        description: "Type of edge service"
+        required: true
+        type: "string"
+        enum:
+        - "ROOT"
+        - "WEB_REVERSE_PROXY"
+        - "VIEW"
+        - "TUNNEL_GATEWAY"
+        - "TUNNEL_PROXY"
+        - "CONTENT_GATEWAY"
+        - "SEG"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/EdgeServiceSettings"
+  /v1/config/general:
+    get:
+      tags:
+      - "GeneralSettings"
+      summary: "Get general settings"
+      description: "Get the settings which contain configuration info for the Access\
+        \ Point"
+      operationId: "getGeneralSettings"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GeneralSettings"
+  /v1/config/idp-ext-metadata/{entityID}(.*):
+    get:
+      tags:
+      - "IdentityProviderExternalMetadata"
+      summary: "Get IdP metadata"
+      description: "Get the external identity provider metadata for a single entity\
+        \ ID for the Access Point"
+      operationId: "getIDPMetadata"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entityID"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/IdPExternalMetadataSettings"
+  /v1/config/idp-ext-metadata:
+    get:
+      tags:
+      - "IdentityProviderExternalMetadata"
+      summary: "Get IdP metadata list"
+      description: "Get the external identity provider metadata list for the Access\
+        \ Point"
+      operationId: "getIDPMetadata"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/IdPExternalMetadataSettingsList"
+    put:
+      tags:
+      - "IdentityProviderExternalMetadata"
+      summary: "Put IdP metadata"
+      description: "Put the external identity provider metadata as Base 64 for the\
+        \ Access Point"
+      operationId: "putIDPMetadata"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "IDPMetadata"
+        required: false
+        schema:
+          $ref: "#/definitions/IdPExternalMetadataSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/IdPExternalMetadataSettings"
+  /v1/config/idp-metadata/{hostName}:
+    get:
+      tags:
+      - "IdentityProviderMetadata"
+      summary: "Get IdP metadata"
+      description: "Get the identity provider metadata XML for the Access Point with\
+        \ external host name. For Web Reverse Proxy use this API as the login URL\
+        \ in mata data must be an accessible URL."
+      operationId: "getIdPMetadata"
+      produces:
+      - "text/xml"
+      parameters:
+      - name: "hostName"
+        in: "path"
+        description: "External Host name"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+  /v1/config/idp-metadata:
+    get:
+      tags:
+      - "IdentityProviderMetadata"
+      summary: "Get IdP metadata"
+      description: "Get the identity provider metadata XML for the Access Point"
+      operationId: "getIdPMetadata"
+      produces:
+      - "text/xml"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+    post:
+      tags:
+      - "IdentityProviderMetadata"
+      summary: "Set IdP metadata"
+      description: "Set the identity provider metadata XML for the Access Point. The\
+        \ IDP metadata can only be set once. The signing certificate is generated\
+        \ automatically if omitted from the request (use {} as the Javascript body\
+        \ of the request)."
+      operationId: "generateIdPMetadata"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Signing certificate"
+        required: false
+        schema:
+          $ref: "#/definitions/CertificateChainAndKeyWrapper"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/IdpMediaType"
+  /v1/config/jwt:
+    get:
+      tags:
+      - "JWTSettings"
+      summary: "Get all JWT Settings"
+      description: "Get the list of all JWT Settings"
+      operationId: "getAllJWTSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/JWTSettingsList"
+    post:
+      tags:
+      - "JWTSettings"
+      summary: "Create JWT settings"
+      description: "Create new JWT settings"
+      operationId: "createJWTSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "JWT settings"
+        required: false
+        schema:
+          $ref: "#/definitions/JWTSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/JWTSettings"
+    put:
+      tags:
+      - "JWTSettings"
+      summary: "Update JWT settings"
+      description: "Update existing JWT settings"
+      operationId: "updateJWTSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "JWT settings"
+        required: false
+        schema:
+          $ref: "#/definitions/JWTSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/JWTSettings"
+  /v1/config/jwt/{name}:
+    get:
+      tags:
+      - "JWTSettings"
+      summary: "Get JWT settings"
+      description: "Get JWT settings"
+      operationId: "getJWTSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "JWT Settings name"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/JWTSettings"
+    delete:
+      tags:
+      - "JWTSettings"
+      summary: "Delete JWT Settings"
+      description: "Delete existing JWT settings"
+      operationId: "deleteAdminUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "JWT Settings name"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/JWTSettingsList"
+  /v1/config/kerberos/keytab:
+    get:
+      tags:
+      - "KerberosSettings"
+      summary: "Get all keyTab principals configured"
+      description: "Get all keyTab principals configured."
+      operationId: "getAllPrincipalNamesConfigured"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+    put:
+      tags:
+      - "KerberosSettings"
+      summary: "Upload the keytab file along with optional principal name"
+      description: "KeyTab file input to the API should be in Base 64 encoded format.the\
+        \ first principal name in the keyTab shall be set as default principal nameassociated\
+        \ with the uploaded keyTab if the princiapl name is not provided while calling\
+        \ API"
+      operationId: "uploadKeyTab"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "KeyTab settings"
+        required: false
+        schema:
+          $ref: "#/definitions/KerberosKeyTabSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/KerberosKeyTabSettings"
+  /v1/config/kerberos/keytab/{principalName}:
+    get:
+      tags:
+      - "KerberosSettings"
+      summary: "Get all keyTab principals configured"
+      description: "Get all keyTab principals configured."
+      operationId: "getKeyTabSetting"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "principalName"
+        in: "path"
+        description: "KeyTab Principal Name"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/KerberosKeyTabSettings"
+  /v1/config/kerberos/realm:
+    get:
+      tags:
+      - "KerberosSettings"
+      summary: "Get all realms configured."
+      description: "Get all realms configured for Kerberos Constrained Delegation"
+      operationId: "getAllRealmsConfigured"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/KerberosRealmSettingsList"
+    post:
+      tags:
+      - "KerberosSettings"
+      summary: "Add a realm to krb5.conf file"
+      description: "Provide a realm with atleast 1 KDC server host in the list"
+      operationId: "addKCDRealm"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Realm settings"
+        required: false
+        schema:
+          $ref: "#/definitions/KerberosRealmSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/KerberosRealmSettings"
+    put:
+      tags:
+      - "KerberosSettings"
+      summary: "Update a realm to krb5.conf file"
+      description: "Provide an existing realm with atleast 1 KDC server host in the\
+        \ list"
+      operationId: "updateKCDRealm"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Realm settings"
+        required: false
+        schema:
+          $ref: "#/definitions/KerberosRealmSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/KerberosRealmSettings"
+  /v1/config/kerberos/realm/{realmName}:
+    get:
+      tags:
+      - "KerberosSettings"
+      summary: "Get all realms configured."
+      description: "Get all realms configured for Kerberos Constrained Delegation"
+      operationId: "getRealmSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "realmName"
+        in: "path"
+        description: "Name of the realm"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/KerberosRealmSettings"
+    delete:
+      tags:
+      - "KerberosSettings"
+      summary: "Delete a realm"
+      description: "Delete a realm configured for Kerberos Constrained Delegation"
+      operationId: "deleteRealmSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "realmName"
+        in: "path"
+        description: "Name of the realm"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/KerberosRealmSettings"
+  /v1/config/loadbalancer/settings:
+    get:
+      tags:
+      - "LoadBalancerSettings"
+      summary: "Get Load balancer settings"
+      description: "Gets the Load balancer settings of UAG"
+      operationId: "getLoadBalancerSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/LoadBalancerSettings"
+    put:
+      tags:
+      - "LoadBalancerSettings"
+      summary: "Add/Update Load balancer settings"
+      description: "Provide virtual IP address and Load balancer group ID"
+      operationId: "addUpdateLoadBalancerSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/LoadBalancerSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/LoadBalancerSettings"
+  /v1/config/loadbalancer/state:
+    get:
+      tags:
+      - "LoadBalancerSettings"
+      summary: "Get Load balancer state"
+      description: "Gets the Load balancer state on UAG"
+      operationId: "getLoadBalancerState"
+      consumes:
+      - "application/json"
+      produces:
+      - "text/xml"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+  /v1/config/loadbalancer/stats:
+    get:
+      tags:
+      - "LoadBalancerSettings"
+      summary: "Get HA stats"
+      description: "Gets HA stats on UAG"
+      operationId: "getHAStats"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "object"
+  /v1/monitor/setLogLevels:
+    put:
+      tags:
+      - "LogOperations"
+      summary: "Set log levels"
+      description: "Set modulewise log severity levels. \nLog levels set can be: error,\
+        \ warn, info, debug, trace for each of the modules: view, webReverseProxy,\
+        \ airwatch, network. \nTo set all modules to debug, send {\"all\" :\"debug\"\
+        }"
+      operationId: "setLogLevels"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "logLevelSettings"
+        required: false
+        schema:
+          type: "object"
+          additionalProperties:
+            type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "object"
+  /v1/monitor/support-archive:
+    get:
+      tags:
+      - "LogOperations"
+      summary: "Get log archive"
+      description: "Gets a ZIP archive of all Access Point log files. NOTE: this API\
+        \ does not work through the Swagger UI or Postman. To experiment with the\
+        \ API, enter the URL directly into the browser. e.g. https://accesspoint:9443/rest/v1/monitor/support-archive"
+      operationId: "getLogArchive"
+      produces:
+      - "application/zip"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+  /v1/monitor/stats:
+    get:
+      tags:
+      - "LogOperations"
+      summary: "Get Stats"
+      description: "Get Stats"
+      operationId: "getStats"
+      produces:
+      - "application/xml"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+  /v1/monitor/getLogLevels:
+    get:
+      tags:
+      - "LogOperations"
+      summary: "Get log levels"
+      description: "Get modulewise log severity levels"
+      operationId: "getLogLevels"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "object"
+  /v1/monitor/resetLogLevels:
+    get:
+      tags:
+      - "LogOperations"
+      summary: "Reset log levels"
+      description: "Reset all log severity levels to info"
+      operationId: "resetLogLevels"
+      produces:
+      - "text/plain"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+  /v1/monitor/setUtserverLogLevel/{logLevel}:
+    get:
+      tags:
+      - "LogOperations"
+      summary: "Set UT server log level"
+      description: "Set Log Level of UDP Tunnel server. "
+      operationId: "setUtserverLogLevel"
+      produces:
+      - "text/plain"
+      parameters:
+      - name: "logLevel"
+        in: "path"
+        description: "Log Level"
+        required: true
+        type: "string"
+        enum:
+        - "ERROR"
+        - "WARN"
+        - "INFO"
+        - "DEBUG"
+        - "TRACE"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+  /v1/config/nic:
+    get:
+      tags:
+      - "NicSettings"
+      summary: "Get all NIC settings"
+      description: "Get all the NIC settings."
+      operationId: "getAllNicSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/NicSettingsList"
+    put:
+      tags:
+      - "NicSettings"
+      summary: "Update the specific NIC configuration."
+      description: ""
+      operationId: "submitNicConfig"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "NIC Configuration for a specific NIC"
+        required: false
+        schema:
+          $ref: "#/definitions/NicSettings"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/nic/{nic}:
+    get:
+      tags:
+      - "NicSettings"
+      summary: "Get network settings for a specific NIC"
+      description: "Gets network settings for a specific NIC."
+      operationId: "getNicSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "nic"
+        in: "path"
+        description: "NIC"
+        required: true
+        type: "string"
+        enum:
+        - "eth0"
+        - "eth1"
+        - "eth2"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/sp-ext-metadata/{spExternalHostName}/{instanceId}:
+    get:
+      tags:
+      - "ServiceProviderExternalMetadataResource"
+      summary: "Get SP metadata"
+      description: "Get the service provider metadata for a single service on the\
+        \ Access Point"
+      operationId: "getSPMetadata"
+      parameters:
+      - name: "spExternalHostName"
+        in: "path"
+        description: "Edge Service External Hostname"
+        required: true
+        type: "string"
+      - name: "instanceId"
+        in: "path"
+        description: "Instance ID of edge service"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/IdPExternalMetadataSettings"
+  /v1/config/sp-metadata:
+    get:
+      tags:
+      - "ServiceProviderMetadata"
+      summary: "Get all of the SP metadata"
+      description: "Get all of the service provider metadata XML for the Unified Access\
+        \ Gateway."
+      operationId: "getSPMetadataList"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SpMediaTypes"
+    put:
+      tags:
+      - "ServiceProviderMetadata"
+      summary: "Put all of the SP metadata"
+      description: "Put all of the service provider metadata XML for the Unified Access\
+        \ Gateway, deleting any existing metadata."
+      operationId: "putSPMetadataList"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "SP metadata list"
+        required: false
+        schema:
+          $ref: "#/definitions/SpMediaTypes"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SpMediaTypes"
+  /v1/config/sp-metadata/{name}:
+    get:
+      tags:
+      - "ServiceProviderMetadata"
+      summary: "Get SP metadata"
+      description: "Get the metadata XML for a specific service provider that has\
+        \ been stored in Unified Access Gateway,"
+      operationId: "getSPMetadata"
+      produces:
+      - "text/xml"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "SP name"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+    post:
+      tags:
+      - "ServiceProviderMetadata"
+      summary: "Add new SP metadata"
+      description: "Add the metadata XML for a new service provider into Unified Access\
+        \ Gateway."
+      operationId: "createSPMetadata"
+      consumes:
+      - "text/xml"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "SP name"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "SP metadata"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SpMediaType"
+    put:
+      tags:
+      - "ServiceProviderMetadata"
+      summary: "Update SP metadata"
+      description: "Update the metadata XML for a specific service provider into Unified\
+        \ Access Gateway."
+      operationId: "putSPMetadata"
+      consumes:
+      - "text/xml"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "SP name"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "SP metadata"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SpMediaType"
+    delete:
+      tags:
+      - "ServiceProviderMetadata"
+      summary: "Delete SP metadata"
+      description: "Delete the metadata XML for a specific SP that has been stored\
+        \ in Unified Access Gateway"
+      operationId: "deleteSPMetadata"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "SP name"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/settings:
+    get:
+      tags:
+      - "UAGSettings"
+      summary: "Get settings"
+      description: "Get the settings which contain configuration info for UAG"
+      operationId: "getSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "format"
+        in: "query"
+        description: "format"
+        required: false
+        type: "string"
+        default: "JSON"
+        enum:
+        - "JSON"
+        - "INI"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "UAGSettings"
+      summary: "Create or update settings"
+      description: "Create settings if they do not exist; else, update the existing\
+        \ ones."
+      operationId: "createOrUpdateSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Settings"
+        required: false
+        schema:
+          $ref: "#/definitions/Settings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Settings"
+  /v1/config/certs/ssl/{entity}:
+    get:
+      tags:
+      - "ServerCertificate"
+      summary: "Get server certificate"
+      description: "Gets the SSL certificate used by the Access Point HTTPS Proxy,\
+        \ the PCoIP and BLAST Secure Gateway OR by the admin interface on 9443"
+      operationId: "getSslCertificate"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entity"
+        in: "path"
+        description: "entity"
+        required: true
+        type: "string"
+        default: "end_user"
+        enum:
+        - "end_user"
+        - "admin"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "ServerCertificate"
+      summary: "Update server certificate"
+      description: "Updates the SSL certificate to use for the Access Point HTTPS\
+        \ Proxy, the PCoIP and BLAST Secure Gateway OR for the admin interface on\
+        \ 9443 SSL certificates should include the full chain of authority and the\
+        \ private key associated with the certificate."
+      operationId: "updateSslCertificate"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entity"
+        in: "path"
+        description: "entity"
+        required: true
+        type: "string"
+        default: "end_user"
+        enum:
+        - "end_user"
+        - "admin"
+      - in: "body"
+        name: "body"
+        description: "Server certificate"
+        required: false
+        schema:
+          $ref: "#/definitions/CertificateChainAndKeyWrapper"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/certs/ssl:
+    get:
+      tags:
+      - "ServerCertificate"
+      summary: "Get server certificate"
+      description: "Gets the SSL certificate being used by the Access Point HTTPS\
+        \ Proxy and the BLAST Secure Gateway."
+      operationId: "getSslCertificate"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "ServerCertificate"
+      summary: "Update server certificate"
+      description: "Updates the SSL certificate to use for the Access Point HTTPS\
+        \ Proxy and the BLAST Secure Gateway. SSL certificates should include the\
+        \ full chain of authority and the private key associated with the certificate."
+      operationId: "updateSslCertificate"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Server certificate"
+        required: false
+        schema:
+          $ref: "#/definitions/CertificateChainAndKeyWrapper"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/certs/ssl/pfx:
+    put:
+      tags:
+      - "ServerCertificate"
+      summary: "Update server certificate with pfx"
+      description: "Updates the SSL certificate to use for the Access Point HTTPS\
+        \ Proxy and the BLAST Secure Gateway. SSL certificates should include the\
+        \ full chain of authority and the private key associated with the certificate."
+      operationId: "updateSslCertificateWithPfx"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Server certificate pfx certificate store"
+        required: false
+        schema:
+          $ref: "#/definitions/PfxCertStoreWrapper"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/certs/ssl/pfx/{entity}:
+    put:
+      tags:
+      - "ServerCertificate"
+      summary: "Update server certificate with pfx"
+      description: "Updates the SSL certificate to use for the Access Point HTTPS\
+        \ Proxy, the PCoIP and BLAST Secure Gateway OR for the admin interface on\
+        \ 9443 SSL certificates should include the full chain of authority and the\
+        \ private key associated with the certificate."
+      operationId: "updateSslCertificateWithPfx"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entity"
+        in: "path"
+        description: "entity"
+        required: true
+        type: "string"
+        default: "end_user"
+        enum:
+        - "end_user"
+        - "admin"
+      - in: "body"
+        name: "body"
+        description: "Server certificate pfx cert store"
+        required: false
+        schema:
+          $ref: "#/definitions/PfxCertStoreWrapper"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/config/system:
+    get:
+      tags:
+      - "SystemSettings"
+      summary: "Get system settings"
+      description: "Get the settings which contain configuration info for the Unified\
+        \ Access Gateway"
+      operationId: "getSystemSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SystemSettings"
+    put:
+      tags:
+      - "SystemSettings"
+      summary: "Create or update system settings"
+      description: "Create a system settings if it doesn't exist; else, update the\
+        \ existing one."
+      operationId: "createOrUpdateSystemSettings"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "System settings"
+        required: false
+        schema:
+          $ref: "#/definitions/SystemSettings"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SystemSettings"
+definitions:
+  PasswordIdpMethodSettings:
+    required:
+    - "baseDN"
+    - "bindDN"
+    - "bindPassword"
+    - "bindUserObjectQuery"
+    - "canonicalNameAttribute"
+    - "cert"
+    - "crossRefs"
+    - "customDirectorySearchAttribute"
+    - "dirType"
+    - "dirUIDAttribute"
+    - "distinguishedNameAttribute"
+    - "enabled"
+    - "groupObjectQuery"
+    - "host"
+    - "isPasswordResetFeatureEnabled"
+    - "isSsl"
+    - "membershipAttribute"
+    - "name"
+    - "numIterations"
+    - "objectUuidAttribute"
+    - "port"
+    - "samlNameIdFormat"
+    - "showDomainIfUserInputAvailable"
+    - "useSrv"
+    - "useStartTls"
+    - "userObjectQuery"
+    properties:
+      name:
+        type: "string"
+        description: "The name of the authentication method."
+      className:
+        type: "string"
+        description: "The name of the class that implements the authentication method."
+        readOnly: true
+      displayName:
+        type: "string"
+        description: "The name of the method useful for display to the user."
+        readOnly: true
+      jarFile:
+        type: "string"
+        description: "The path name of the JAR file that contains the authentication\
+          \ method."
+        readOnly: true
+      authMethod:
+        type: "string"
+        description: "The formal name (URN) of the authentication method."
+        readOnly: true
+      versionNum:
+        type: "string"
+        description: "The version of the authentication method."
+        readOnly: true
+      enabled:
+        type: "boolean"
+        description: "Enable Password Adapter"
+      numIterations:
+        type: "string"
+        example: "Number of retries before authentication fails"
+        description: "Number of authentication attempts allowed"
+      dirType:
+        type: "string"
+        description: "Type of Directory"
+        enum:
+        - "ActiveDirectory"
+      port:
+        type: "string"
+        example: "Server port (e.g. 389 or 636)"
+        description: "Server Port"
+      host:
+        type: "string"
+        example: "Server address (e.g. 143.23.22.145 or ad.mycorp.com)"
+        description: "Server Host"
+      isSsl:
+        type: "boolean"
+        example: false
+        description: "Use SSL"
+      useSrv:
+        type: "boolean"
+        example: false
+        description: "Use DNS Service Location"
+      baseDN:
+        type: "string"
+        example: "DN from which to start account searches (e.g. ou=myUnit,dc=myCorp,dc=com)"
+        description: "Base DN"
+      bindDN:
+        type: "string"
+        example: "Account that can search for users (e.g. cn=Admin,ou=myUnit,dc=myCorp,dc=com)"
+        description: "Bind DN"
+      bindPassword:
+        type: "string"
+        example: "Password for the account that can search for users"
+        description: "Bind Password"
+      dirUIDAttribute:
+        type: "string"
+        example: "Account attribute that contains username (e.g. sAMAccountName for\
+          \ Active Directory)"
+        description: "Search Attribute"
+      samlNameIdFormat:
+        type: "string"
+        description: "SAML Name-Id Format"
+        enum:
+        - "userName"
+        - "emails"
+        - "userPrincipalName"
+      cert:
+        type: "string"
+        example: "To establish secure SSL connections, add the directory server certificate\
+          \ here.   In the case of multiple servers, add the root certificate of the\
+          \ certificate authority"
+        description: "Directory certificate"
+      useStartTls:
+        type: "boolean"
+        example: false
+        description: "Use STARTTLS"
+      isPasswordResetFeatureEnabled:
+        type: "boolean"
+        description: "Change Password feature enabled."
+      groupObjectQuery:
+        type: "object"
+        example: "AD query to fetch Groups"
+        description: "AD query to fetch Groups"
+      bindUserObjectQuery:
+        type: "object"
+        example: "AD query to fetch BIND DN user"
+        description: "AD query to fetch BIND DN user"
+      userObjectQuery:
+        type: "object"
+        example: "AD query to fetch users"
+        description: "AD query to fetch users"
+      customDirectorySearchAttribute:
+        type: "object"
+        example: "Custom Directory Search Attribute"
+        description: "Custom Directory Search Attribute"
+      membershipAttribute:
+        type: "object"
+        example: "Attribute to be used get user group memberships"
+        description: "Attribute to be used get user group memberships"
+      objectUuidAttribute:
+        type: "object"
+        example: "Object UID Attribute"
+        description: "Object UID Attribute"
+      distinguishedNameAttribute:
+        type: "object"
+        example: "Distinguished Name Attribute"
+        description: "Distinguished Name Attribute"
+      canonicalNameAttribute:
+        type: "object"
+        example: "Canonical Name Attribute"
+        description: "Canonical Name Attribute"
+      crossRefs:
+        type: "object"
+        example: "Cross Refs"
+        description: "Cross Refs"
+      showDomainIfUserInputAvailable:
+        type: "boolean"
+        example: false
+        description: "Display Domain on Login Page"
+  RSAAAIdpMethodSettings:
+    required:
+    - "baseDN"
+    - "bindDN"
+    - "bindPassword"
+    - "cert"
+    - "dirType"
+    - "dirUIDAttribute"
+    - "enableOOBEmail"
+    - "enableOOBSMS"
+    - "enableQuestions"
+    - "enableSecurId"
+    - "enabled"
+    - "host"
+    - "isSsl"
+    - "maxRetries"
+    - "name"
+    - "numQuestionsToChallenge"
+    - "numQuestionsToEnroll"
+    - "port"
+    - "rsaaaDomain"
+    - "soapEndpoint"
+    - "soapPassword"
+    - "soapUsername"
+    - "useSrv"
+    - "useStartTls"
+    properties:
+      name:
+        type: "string"
+        description: "The name of the authentication method."
+      className:
+        type: "string"
+        description: "The name of the class that implements the authentication method."
+        readOnly: true
+      displayName:
+        type: "string"
+        description: "The name of the method useful for display to the user."
+        readOnly: true
+      jarFile:
+        type: "string"
+        description: "The path name of the JAR file that contains the authentication\
+          \ method."
+        readOnly: true
+      authMethod:
+        type: "string"
+        description: "The formal name (URN) of the authentication method."
+        readOnly: true
+      versionNum:
+        type: "string"
+        description: "The version of the authentication method."
+        readOnly: true
+      enabled:
+        type: "boolean"
+        description: "Enable RSA AA Adapter"
+      soapEndpoint:
+        type: "string"
+        example: "RSA AA API Endpoint URL"
+        description: "SOAP Endpoint"
+      soapUsername:
+        type: "string"
+        example: "RSA AA API Username"
+        description: "SOAP Username"
+      soapPassword:
+        type: "string"
+        example: "RSA AA API Password"
+        description: "SOAP Password"
+      rsaaaDomain:
+        type: "string"
+        example: "Domain in AA environment. Leave blank for default domain"
+        description: "RSA Domain"
+      enableOOBEmail:
+        type: "boolean"
+        description: "Enable OOB Email"
+      enableOOBSMS:
+        type: "boolean"
+        description: "Enable OOB SMS"
+      enableSecurId:
+        type: "boolean"
+        description: "Enable SecurID"
+      enableQuestions:
+        type: "boolean"
+        description: "Enable Secret Question"
+      numQuestionsToEnroll:
+        type: "string"
+        example: "Number of questions for the user to setup on enrollment"
+        description: "Num Enrollment Questions"
+      numQuestionsToChallenge:
+        type: "string"
+        example: "Number of questions the user has to answer correctly on login"
+        description: "Num Challenge Questions"
+      maxRetries:
+        type: "string"
+        example: "Number of retries before authentication fails"
+        description: "Number of authentication attempts allowed"
+      dirType:
+        type: "string"
+        description: "Type of Directory"
+        enum:
+        - "ActiveDirectory"
+      host:
+        type: "string"
+        example: "Server address (e.g. 143.23.22.145 or ad.mycorp.com)"
+        description: "Server Host"
+      port:
+        type: "string"
+        example: "Server port (e.g. 389 or 636)"
+        description: "Server Port"
+      isSsl:
+        type: "boolean"
+        example: false
+        description: "Use SSL"
+      useSrv:
+        type: "boolean"
+        example: false
+        description: "Use DNS Service Location"
+      baseDN:
+        type: "string"
+        example: "DN from which to start account searches (e.g. ou=myUnit,dc=myCorp,dc=com)"
+        description: "Base DN"
+      bindDN:
+        type: "string"
+        example: "Account that can search for users (e.g. cn=Admin,ou=myUnit,dc=myCorp,dc=com)"
+        description: "Bind DN"
+      bindPassword:
+        type: "string"
+        example: "Password for the account that can search for users"
+        description: "Bind Password"
+      dirUIDAttribute:
+        type: "string"
+        example: "Account attribute that contains username (e.g. sAMAccountName for\
+          \ Active Directory)"
+        description: "Search Attribute"
+      cert:
+        type: "string"
+        example: "To establish secure SSL connections, add the directory server certificate\
+          \ here.   In the case of multiple servers, add the root certificate of the\
+          \ certificate authority"
+        description: "Directory certificate"
+      useStartTls:
+        type: "boolean"
+        example: false
+        description: "Use STARTTLS"
+  SecurIDIdpMethodSettings:
+    required:
+    - "enabled"
+    - "externalHostName"
+    - "internalHostName"
+    - "name"
+    - "nameIdSuffix"
+    - "numIterations"
+    - "serverConfig"
+    properties:
+      name:
+        type: "string"
+        description: "The name of the authentication method."
+      className:
+        type: "string"
+        description: "The name of the class that implements the authentication method."
+        readOnly: true
+      displayName:
+        type: "string"
+        description: "The name of the method useful for display to the user."
+        readOnly: true
+      jarFile:
+        type: "string"
+        description: "The path name of the JAR file that contains the authentication\
+          \ method."
+        readOnly: true
+      authMethod:
+        type: "string"
+        description: "The formal name (URN) of the authentication method."
+        readOnly: true
+      versionNum:
+        type: "string"
+        description: "The version of the authentication method."
+        readOnly: true
+      enabled:
+        type: "boolean"
+        description: "Enable SecurID"
+      numIterations:
+        type: "string"
+        example: "Number of retries before authentication fails"
+        description: "Number of authentication attempts allowed"
+      internalHostName:
+        type: "string"
+        example: "IP address of this connector instance"
+        description: "Connector Address"
+      externalHostName:
+        type: "string"
+        example: "IP Address of this connector instance as specified in the SecurID\
+          \ server's agent configuration"
+        description: "Agent IP Address"
+      serverConfig:
+        type: "object"
+        example: "Upload the server configuration file after you have downloaded the\
+          \ compressed configuration file from the RSA SecurID server and extracted\
+          \ the file, default name is sdconf.rec."
+        description: "Server Configuration"
+      nameIdSuffix:
+        type: "object"
+        description: "Name ID Suffix"
+  RadiusAuthMethodSettings:
+    required:
+    - "accountingPort"
+    - "accountingPort_2"
+    - "authPort"
+    - "authPort_2"
+    - "authType"
+    - "authType_2"
+    - "directAuthChainedUsername"
+    - "enableBasicMSCHAPv2Validation_1"
+    - "enableBasicMSCHAPv2Validation_2"
+    - "enabled"
+    - "enabledAux"
+    - "hostName"
+    - "hostName_2"
+    - "name"
+    - "nameIdSuffix"
+    - "numAttempts"
+    - "numAttempts_2"
+    - "numIterations"
+    - "radiusCustomPassphraseHint"
+    - "radiusDisplayHint"
+    - "realmPrefix"
+    - "realmPrefix_2"
+    - "realmSuffix"
+    - "realmSuffix_2"
+    - "serverTimeout"
+    - "serverTimeout_2"
+    - "sharedSecret"
+    - "sharedSecret_2"
+    - "showDomainIfUserInputAvailable"
+    properties:
+      name:
+        type: "string"
+        description: "The name of the authentication method."
+      className:
+        type: "string"
+        description: "The name of the class that implements the authentication method."
+        readOnly: true
+      displayName:
+        type: "string"
+        description: "The name of the method useful for display to the user."
+        readOnly: true
+      jarFile:
+        type: "string"
+        description: "The path name of the JAR file that contains the authentication\
+          \ method."
+        readOnly: true
+      authMethod:
+        type: "string"
+        description: "The formal name (URN) of the authentication method."
+        readOnly: true
+      versionNum:
+        type: "string"
+        description: "The version of the authentication method."
+        readOnly: true
+      enabled:
+        type: "boolean"
+        description: "Enable Radius Adapter"
+      numIterations:
+        type: "string"
+        example: "Number of retries before authentication fails"
+        description: "Number of authentication attempts allowed"
+      radiusDisplayHint:
+        type: "string"
+        description: "Login page passphrase hint"
+      radiusCustomPassphraseHint:
+        type: "string"
+        description: "Login page custom passphrase hint"
+      directAuthChainedUsername:
+        type: "boolean"
+        description: "Enable direct authentication to Radius server during auth chaining"
+      numAttempts:
+        type: "string"
+        description: "Number of attempts to Radius server"
+      serverTimeout:
+        type: "string"
+        description: "Server timeout in seconds"
+      hostName:
+        type: "string"
+        description: "Radius server hostname/address"
+      authPort:
+        type: "string"
+        description: "Authentication port"
+      accountingPort:
+        type: "string"
+        description: "Accounting port"
+      authType:
+        type: "string"
+        description: "Authentication type"
+        enum:
+        - "PAP"
+        - "CHAP"
+        - "MSCHAP1"
+        - "MSCHAP2"
+      sharedSecret:
+        type: "string"
+        description: "Shared secret"
+      realmPrefix:
+        type: "string"
+        description: "Realm prefix"
+      realmSuffix:
+        type: "string"
+        description: "Realm suffix"
+      enableBasicMSCHAPv2Validation_1:
+        type: "boolean"
+        description: "Enable basic MSCHAPv2 validation"
+      enabledAux:
+        type: "boolean"
+        description: "Enable secondary server"
+      numAttempts_2:
+        type: "string"
+        description: "Number of attempts to secondary Radius server"
+      serverTimeout_2:
+        type: "string"
+        description: "Server timeout in seconds for secondary server"
+      hostName_2:
+        type: "string"
+        description: "Radius server hostname/address for secondary server"
+      authPort_2:
+        type: "string"
+        description: "Authentication port for secondary server"
+      accountingPort_2:
+        type: "string"
+        description: "Accounting port for secondary server"
+      authType_2:
+        type: "string"
+        description: "Authentication type for secondary server"
+        enum:
+        - "PAP"
+        - "CHAP"
+        - "MSCHAP1"
+        - "MSCHAP2"
+      sharedSecret_2:
+        type: "string"
+        description: "Shared secret for secondary server"
+      nameIdSuffix:
+        type: "object"
+        description: "Name Id Suffix"
+      realmPrefix_2:
+        type: "string"
+        description: "Realm prefix for secondary server"
+      realmSuffix_2:
+        type: "string"
+        description: "Realm suffix for secondary server"
+      enableBasicMSCHAPv2Validation_2:
+        type: "boolean"
+        description: "Enable basic MSCHAPv2 validation for secondary server"
+      showDomainIfUserInputAvailable:
+        type: "boolean"
+        example: false
+        description: "Display Domain on Login Page"
+  CertificateAuthMethodSettings:
+    required:
+    - "caCertificates"
+    - "certificatePolicies"
+    - "consentForm"
+    - "crlLocation"
+    - "enableCertCRL"
+    - "enableCertRevocation"
+    - "enableConsentForm"
+    - "enableOCSP"
+    - "enableOCSPCRLFailover"
+    - "enabled"
+    - "name"
+    - "ocspURL"
+    - "ocspURLSource"
+    - "requestTimeout"
+    - "sendOCSPNonce"
+    - "userIdSource"
+    - "validateUpn"
+    properties:
+      name:
+        type: "string"
+        description: "The name of the authentication method."
+      className:
+        type: "string"
+        description: "The name of the class that implements the authentication method."
+        readOnly: true
+      displayName:
+        type: "string"
+        description: "The name of the method useful for display to the user."
+        readOnly: true
+      jarFile:
+        type: "string"
+        description: "The path name of the JAR file that contains the authentication\
+          \ method."
+        readOnly: true
+      authMethod:
+        type: "string"
+        description: "The formal name (URN) of the authentication method."
+        readOnly: true
+      versionNum:
+        type: "string"
+        description: "The version of the authentication method."
+        readOnly: true
+      enabled:
+        type: "boolean"
+        example: false
+        description: "Enable Certificate Adapter"
+      caCertificates:
+        type: "string"
+        example: "A list of trusted CA certificates in PEM format."
+        description: "Trusted CA certificates in PEM format."
+      userIdSource:
+        type: "string"
+        example: "Select the search order for locating the user identifier within\
+          \ the certificate. upn: UserPrincipalName value from the Subject Alternative\
+          \ Name; email: Email address from the Subject Alternative Name; subject:\
+          \ UID value from the Subject"
+        description: "User Identifier Search Order"
+        enum:
+        - "email"
+        - "subject"
+        - "upn"
+        - "email.subject"
+        - "email.upn"
+        - "subject.email"
+        - "subject.upn"
+        - "upn.email"
+        - "upn.subject"
+        - "email.subject.upn"
+        - "email.upn.subject"
+        - "subject.email.upn"
+        - "subject.upn.email"
+        - "upn.email.subject"
+        - "upn.subject.email"
+      validateUpn:
+        type: "boolean"
+        example: false
+        description: "Validate UPN Format"
+      requestTimeout:
+        type: "string"
+        example: "Timeout in seconds to wait for a response.  A value of zero will\
+          \ wait indefinitely."
+        description: "Request Timeout"
+      certificatePolicies:
+        type: "string"
+        example: "Object Identifier (OID) list that is accepted in the Certificate\
+          \ Policies extension"
+        description: "Certificate Policies Accepted"
+      enableCertRevocation:
+        type: "boolean"
+        example: false
+        description: "Enable Cert Revocation"
+      enableCertCRL:
+        type: "boolean"
+        example: false
+        description: "Use CRL from Certificates"
+      crlLocation:
+        type: "string"
+        example: "CRL location to use for revocation check (e.g. http://crlurl.crl\
+          \ or file:///crlFile.crl)"
+        description: "CRL Location"
+      enableOCSP:
+        type: "boolean"
+        description: "Enable OCSP Revocation"
+      enableOCSPCRLFailover:
+        type: "boolean"
+        example: false
+        description: "Use CRL in case of OCSP failure"
+      sendOCSPNonce:
+        type: "boolean"
+        example: false
+        description: "Send OCSP Nonce"
+      ocspURL:
+        type: "string"
+        example: "OCSP URL to use for revocation check (e.g. http://ocspurl.com)."
+        description: "OCSP URL"
+      ocspURLSource:
+        type: "string"
+        example: "Source for OCSP URL: configuration, certificate or both"
+        description: "OCSP URL Source"
+        enum:
+        - "config_only"
+        - "cert_only_optional"
+        - "cert_only_required"
+        - "cert_and_config"
+      enableConsentForm:
+        type: "boolean"
+        example: false
+        description: "Enable Consent Form before Authentication"
+      consentForm:
+        type: "string"
+        example: "The content of the consent form to be displayed"
+        description: "Consent Form Content"
+  AdminUser:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      password:
+        type: "string"
+      userId:
+        type: "string"
+      enabled:
+        type: "boolean"
+      roles:
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "ROLE_ADMIN"
+          - "ROLE_MONITORING"
+      adminPasswordSetTime:
+        type: "string"
+  AdminUsersList:
+    type: "object"
+    required:
+    - "adminUsersList"
+    properties:
+      adminUsersList:
+        type: "array"
+        description: "List of UAG Users."
+        items:
+          $ref: "#/definitions/AdminUser"
+  ModifiedAdminUser:
+    type: "object"
+    properties:
+      modifiedBy:
+        type: "string"
+      name:
+        type: "string"
+      password:
+        type: "string"
+      userId:
+        type: "string"
+      enabled:
+        type: "boolean"
+      roles:
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "ROLE_ADMIN"
+          - "ROLE_MONITORING"
+      adminPasswordSetTime:
+        type: "string"
+  ChangePasswordSettings:
+    type: "object"
+    required:
+    - "newPassword"
+    - "oldPassword"
+    - "userId"
+    - "userName"
+    properties:
+      userId:
+        type: "string"
+        description: "User ID for which password is being changed."
+      userName:
+        type: "string"
+        description: "User Name for which password is being changed."
+      oldPassword:
+        type: "string"
+        description: "Old password of the user."
+      newPassword:
+        type: "string"
+        description: "New Password for the user."
+  AuthMethodSettings:
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        description: "The name of the authentication method."
+      className:
+        type: "string"
+        description: "The name of the class that implements the authentication method."
+        readOnly: true
+      displayName:
+        type: "string"
+        description: "The name of the method useful for display to the user."
+        readOnly: true
+      jarFile:
+        type: "string"
+        description: "The path name of the JAR file that contains the authentication\
+          \ method."
+        readOnly: true
+      authMethod:
+        type: "string"
+        description: "The formal name (URN) of the authentication method."
+        readOnly: true
+      versionNum:
+        type: "string"
+        description: "The version of the authentication method."
+        readOnly: true
+  AuthMethodSettingsList:
+    properties:
+      authMethodSettingsList:
+        type: "array"
+        description: "List of authentication method settings."
+        readOnly: true
+        items:
+          $ref: "#/definitions/AuthMethodSettings"
+  CustomBranding:
+    type: "object"
+    required:
+    - "resourceContent"
+    - "resourceMapKey"
+    - "resourceName"
+    properties:
+      resourceContent:
+        type: "string"
+        description: "resource content in base64 format"
+      resourceName:
+        type: "string"
+        description: "resource content file name"
+      resourceMapKey:
+        type: "string"
+        description: "resource content mapping key"
+  CustomBrandingSettings:
+    type: "object"
+    required:
+    - "customBrandingList"
+    properties:
+      customBrandingList:
+        type: "array"
+        description: "List of custom branding settings."
+        items:
+          $ref: "#/definitions/CustomBranding"
+  DevicePolicySettings:
+    type: "object"
+    required:
+    - "name"
+    - "password"
+    - "userName"
+    properties:
+      name:
+        type: "string"
+        description: "Name of the device policy check service provider."
+        enum:
+        - "OPSWAT"
+      userName:
+        type: "string"
+        description: "User name for configured tenant."
+      password:
+        type: "string"
+        description: "Password for configured user on tenant."
+      hostName:
+        type: "string"
+        description: "Opswat host name."
+  DevicePolicySettingsList:
+    type: "object"
+    required:
+    - "devicePolicySettingsList"
+    properties:
+      devicePolicySettingsList:
+        type: "array"
+        description: "List of device policy settings."
+        items:
+          $ref: "#/definitions/DevicePolicySettings"
+  AirWatchCGEdgeServiceSettings:
+    allOf:
+    - $ref: "#/definitions/EdgeServiceSettings"
+    - type: "object"
+      required:
+      - "airwatchComponentsInstalled"
+      - "airwatchServerHostname"
+      - "apiServerPassword"
+      - "apiServerUrl"
+      - "apiServerUsername"
+      - "organizationGroupCode"
+      properties:
+        apiServerUrl:
+          type: "string"
+          description: "AirWatch API Server URL Format is [http[s]://]hostname[:port]."
+        apiServerUsername:
+          type: "string"
+          description: "AirWatch Admin Console username"
+        apiServerPassword:
+          type: "string"
+          description: "AirWatch Admin Console password"
+        organizationGroupCode:
+          type: "string"
+          description: "Organization Group Code"
+        airwatchServerHostname:
+          type: "string"
+          description: "AirWatch Application Hostname"
+        reinitializeGatewayProcess:
+          type: "boolean"
+          description: "Forcibly re-initialize the Gateway"
+        outboundProxyHost:
+          type: "string"
+          description: "Outbound Proxy Host"
+        outboundProxyPort:
+          type: "string"
+          description: "Outbound Proxy Port"
+        outboundProxyUsername:
+          type: "string"
+          description: "Outbound Proxy Username"
+        ntlmAuthentication:
+          type: "boolean"
+          description: "Whether the outbound proxy requires NTLM authentication?"
+        outboundProxyPassword:
+          type: "string"
+          description: "Outbound Proxy Password"
+        airwatchOutboundProxy:
+          type: "boolean"
+          description: "Whether AirWatch Outbound Proxy used for AirWatch component(s)?"
+        airwatchComponentsInstalled:
+          type: "string"
+          description: "AirWatch Components installed on this appliance"
+        airwatchAgentStartUpMode:
+          type: "string"
+        serviceHost:
+          type: "string"
+          description: "Service Hostname"
+        servicePort:
+          type: "string"
+          description: "Service Port"
+        serviceStatsPort:
+          type: "string"
+          description: "Service Stats Port"
+        serviceName:
+          type: "string"
+          description: "Service Name"
+        serviceInstallStatus:
+          type: "boolean"
+          description: "Service Installation Status"
+        serviceInstallationMessage:
+          type: "string"
+          description: "Service Installation Message"
+        runningMode:
+          type: "string"
+          description: "AirWatch Edge Service Running Mode"
+        cgConfigurationId:
+          type: "string"
+          description: "AirWatch Content Gateway Configuration ID"
+  AirWatchSEGEdgeServiceSettings:
+    allOf:
+    - $ref: "#/definitions/EdgeServiceSettings"
+    - type: "object"
+      required:
+      - "airwatchComponentsInstalled"
+      - "airwatchServerHostname"
+      - "apiServerPassword"
+      - "apiServerUrl"
+      - "apiServerUsername"
+      - "organizationGroupCode"
+      properties:
+        apiServerUrl:
+          type: "string"
+          description: "AirWatch API Server URL Format is [http[s]://]hostname[:port]."
+        apiServerUsername:
+          type: "string"
+          description: "AirWatch Admin Console username"
+        apiServerPassword:
+          type: "string"
+          description: "AirWatch Admin Console password"
+        organizationGroupCode:
+          type: "string"
+          description: "Organization Group Code"
+        airwatchServerHostname:
+          type: "string"
+          description: "AirWatch Application Hostname"
+        reinitializeGatewayProcess:
+          type: "boolean"
+          description: "Forcibly re-initialize the Gateway"
+        outboundProxyHost:
+          type: "string"
+          description: "Outbound Proxy Host"
+        outboundProxyPort:
+          type: "string"
+          description: "Outbound Proxy Port"
+        outboundProxyUsername:
+          type: "string"
+          description: "Outbound Proxy Username"
+        ntlmAuthentication:
+          type: "boolean"
+          description: "Whether the outbound proxy requires NTLM authentication?"
+        outboundProxyPassword:
+          type: "string"
+          description: "Outbound Proxy Password"
+        airwatchOutboundProxy:
+          type: "boolean"
+          description: "Whether AirWatch Outbound Proxy used for AirWatch component(s)?"
+        airwatchComponentsInstalled:
+          type: "string"
+          description: "AirWatch Components installed on this appliance"
+        airwatchAgentStartUpMode:
+          type: "string"
+        serviceHost:
+          type: "string"
+          description: "Service Hostname"
+        servicePort:
+          type: "string"
+          description: "Service Port"
+        serviceStatsPort:
+          type: "string"
+          description: "Service Stats Port"
+        serviceName:
+          type: "string"
+          description: "Service Name"
+        serviceInstallStatus:
+          type: "boolean"
+          description: "Service Installation Status"
+        serviceInstallationMessage:
+          type: "string"
+          description: "Service Installation Message"
+        runningMode:
+          type: "string"
+          description: "AirWatch Edge Service Running Mode"
+        memConfigurationId:
+          type: "string"
+          description: "AirWatch MEM Configuration ID"
+  AirWatchTunnelProxyEdgeServiceSettings:
+    allOf:
+    - $ref: "#/definitions/EdgeServiceSettings"
+    - type: "object"
+      required:
+      - "airwatchComponentsInstalled"
+      - "airwatchServerHostname"
+      - "apiServerPassword"
+      - "apiServerUrl"
+      - "apiServerUsername"
+      - "organizationGroupCode"
+      properties:
+        apiServerUrl:
+          type: "string"
+          description: "AirWatch API Server URL Format is [http[s]://]hostname[:port]."
+        apiServerUsername:
+          type: "string"
+          description: "AirWatch Admin Console username"
+        apiServerPassword:
+          type: "string"
+          description: "AirWatch Admin Console password"
+        organizationGroupCode:
+          type: "string"
+          description: "Organization Group Code"
+        airwatchServerHostname:
+          type: "string"
+          description: "AirWatch Application Hostname"
+        reinitializeGatewayProcess:
+          type: "boolean"
+          description: "Forcibly re-initialize the Gateway"
+        outboundProxyHost:
+          type: "string"
+          description: "Outbound Proxy Host"
+        outboundProxyPort:
+          type: "string"
+          description: "Outbound Proxy Port"
+        outboundProxyUsername:
+          type: "string"
+          description: "Outbound Proxy Username"
+        ntlmAuthentication:
+          type: "boolean"
+          description: "Whether the outbound proxy requires NTLM authentication?"
+        outboundProxyPassword:
+          type: "string"
+          description: "Outbound Proxy Password"
+        airwatchOutboundProxy:
+          type: "boolean"
+          description: "Whether AirWatch Outbound Proxy used for AirWatch component(s)?"
+        airwatchComponentsInstalled:
+          type: "string"
+          description: "AirWatch Components installed on this appliance"
+        airwatchAgentStartUpMode:
+          type: "string"
+        serviceHost:
+          type: "string"
+          description: "Service Hostname"
+        servicePort:
+          type: "string"
+          description: "Service Port"
+        serviceStatsPort:
+          type: "string"
+          description: "Service Stats Port"
+        serviceName:
+          type: "string"
+          description: "Service Name"
+        serviceInstallStatus:
+          type: "boolean"
+          description: "Service Installation Status"
+        serviceInstallationMessage:
+          type: "string"
+          description: "Service Installation Message"
+        runningMode:
+          type: "string"
+          description: "AirWatch Edge Service Running Mode"
+  AirWatchTunnelServerEdgeServiceSettings:
+    allOf:
+    - $ref: "#/definitions/EdgeServiceSettings"
+    - type: "object"
+      required:
+      - "airwatchComponentsInstalled"
+      - "airwatchServerHostname"
+      - "apiServerPassword"
+      - "apiServerUrl"
+      - "apiServerUsername"
+      - "configuredService"
+      - "organizationGroupCode"
+      properties:
+        apiServerUrl:
+          type: "string"
+          description: "AirWatch API Server URL Format is [http[s]://]hostname[:port]."
+        apiServerUsername:
+          type: "string"
+          description: "AirWatch Admin Console username"
+        apiServerPassword:
+          type: "string"
+          description: "AirWatch Admin Console password"
+        organizationGroupCode:
+          type: "string"
+          description: "Organization Group Code"
+        airwatchServerHostname:
+          type: "string"
+          description: "AirWatch Application Hostname"
+        reinitializeGatewayProcess:
+          type: "boolean"
+          description: "Forcibly re-initialize the Gateway"
+        outboundProxyHost:
+          type: "string"
+          description: "Outbound Proxy Host"
+        outboundProxyPort:
+          type: "string"
+          description: "Outbound Proxy Port"
+        outboundProxyUsername:
+          type: "string"
+          description: "Outbound Proxy Username"
+        ntlmAuthentication:
+          type: "boolean"
+          description: "Whether the outbound proxy requires NTLM authentication?"
+        outboundProxyPassword:
+          type: "string"
+          description: "Outbound Proxy Password"
+        airwatchOutboundProxy:
+          type: "boolean"
+          description: "Whether AirWatch Outbound Proxy used for AirWatch component(s)?"
+        airwatchComponentsInstalled:
+          type: "string"
+          description: "AirWatch Components installed on this appliance"
+        airwatchAgentStartUpMode:
+          type: "string"
+        serviceHost:
+          type: "string"
+          description: "Service Hostname"
+        servicePort:
+          type: "string"
+          description: "Service Port"
+        serviceStatsPort:
+          type: "string"
+          description: "Service Stats Port"
+        serviceName:
+          type: "string"
+          description: "Service Name"
+        serviceInstallStatus:
+          type: "boolean"
+          description: "Service Installation Status"
+        serviceInstallationMessage:
+          type: "string"
+          description: "Service Installation Message"
+        runningMode:
+          type: "string"
+          description: "AirWatch Edge Service Running Mode"
+        configuredService:
+          type: "string"
+          description: "A read only property used to identify which service is enabled\
+            \ inAW console : vpn, proxy or both"
+          enum:
+          - "WEB_REVERSE_PROXY"
+          - "VIEW"
+          - "TUNNEL_GATEWAY"
+          - "TUNNEL_PROXY"
+          - "SEG"
+          - "CONTENT_GATEWAY"
+          - "TUNNEL_GATEWAY_AND_TUNNEL_PROXY"
+          - "DUMMY_TYPE"
+  EdgeServiceSettings:
+    type: "object"
+    required:
+    - "enabled"
+    - "identifier"
+    - "proxyDestinationUrl"
+    discriminator: "identifier"
+    properties:
+      enabled:
+        type: "boolean"
+        description: "Whether this service is enabled"
+      identifier:
+        type: "string"
+        description: "The type of edge service."
+      proxyDestinationUrl:
+        type: "string"
+        description: "Users will make HTTP requests to the Access Point to access\
+          \ a service, and the requests will be proxied to this URL, where the service\
+          \ lives."
+      proxyDestinationUrlThumbprints:
+        type: "string"
+        description: "List of acceptable SSL server certificate thumbprints for the\
+          \ proxyDestinationUrl. If blank, a valid certificate is required. If '*',\
+          \ any certificate is allowed. Otherwise, this is a comma-separated list\
+          \ of thumbprints. A thumbprint is of the format [alg=]xx:xx... where alg\
+          \ can be sha1(default) or md5 and the 'xx' are hexidecimal digits. The ':'\
+          \ separator can also be a space or missing. Case in a thumbprint is ignored."
+        pattern: "^\\s*$||(((sha1|md5|sha256)=)?([0-9a-fA-F][0-9a-fA-F][: ]?)*[0-9a-fA-F][0-9a-fA-F],\
+          \ *)*(((sha1|md5|sha256)=)?([0-9a-fA-F][0-9a-fA-F][: ]?)*[0-9a-fA-F][0-9a-fA-F])"
+      authMethods:
+        type: "string"
+        description: "Comma-separated list of the names of authentication methods\
+          \ to use for the edge service. If blank or null, no AP authentication is\
+          \ enforced."
+      healthCheckUrl:
+        type: "string"
+        description: "Health check url to be used to check health of the backend.\
+          \ If notprovided /favicon.ico will be used"
+      samlSP:
+        type: "string"
+        description: "The name of the SAML service provider for the View XMLAPI broker.\
+          \ This name must either match the name of a configured service provider\
+          \ metadata or be the special value \"DEMO\"."
+      hostEntries:
+        type: "array"
+        description: "The list of host entries to be added in /etc/hosts/"
+        items:
+          type: "string"
+      trustedCertificates:
+        type: "array"
+        description: "The list of trusted certificates to be added in /etc/pki/trust/anchors/"
+        items:
+          $ref: "#/definitions/PublicKeyOrCert"
+      devicePolicyServiceProvider:
+        type: "string"
+        description: "Name of the device policy check service provider."
+        enum:
+        - "OPSWAT"
+  EdgeServiceSettingsList:
+    type: "object"
+    required:
+    - "edgeServiceSettingsList"
+    properties:
+      edgeServiceSettingsList:
+        type: "array"
+        description: "List of edge service settings."
+        items:
+          $ref: "#/definitions/EdgeServiceSettings"
+  PublicKeyOrCert:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      data:
+        type: "string"
+  ViewEdgeServiceSettings:
+    allOf:
+    - $ref: "#/definitions/EdgeServiceSettings"
+    - type: "object"
+      required:
+      - "blastEnabled"
+      - "pcoipEnabled"
+      - "tunnelEnabled"
+      properties:
+        pcoipEnabled:
+          type: "boolean"
+          description: "Enable / disable PC over IP support."
+        pcoipExternalUrl:
+          type: "string"
+          description: "Override the default PCoIP External URL value. Format is [pcoip://]IP[:port].\
+            \ Default value (Access Point's IP address:4172) will be used if not set."
+        blastEnabled:
+          type: "boolean"
+          description: "Enable / disable BLAST secure gateway support."
+        blastExternalUrl:
+          type: "string"
+          description: "Override the default BLAST External URL value. Format is [https://]host[:port][?queryParams].\
+            \ Default value (Access Point's host:443) will be used if not set."
+        proxyBlastPemCert:
+          type: "string"
+          description: "Certificate of any proxy if present in front of UAG for forwarding\
+            \ blast connections. In PEM format and only leaf certificate"
+        proxyBlastSHA1Thumbprint:
+          type: "string"
+          description: "SHA1 thumbprint of any proxy certificate in front of UAG forforwarding\
+            \ blast connections"
+        proxyBlastSHA256Thumbprint:
+          type: "string"
+          description: "SHA256 thumbprint of any proxy certificate in front of UAG\
+            \ for for forwarding blast connections."
+        tunnelEnabled:
+          type: "boolean"
+          description: "Enable / disable Secure Tunnel support."
+        tunnelExternalUrl:
+          type: "string"
+          description: "Override the default Secure Tunnel External URL value. Format\
+            \ is [https://]host[:port]. Default value (Access Point's host:443) will\
+            \ be used if not set."
+        proxyTunnelPemCert:
+          type: "string"
+          description: "Certificate of any proxy if present in front of UAG for forwarding\
+            \ tunnel connections. In PEM format and only leaf certificate"
+        proxyTunnelSHA1Thumbprint:
+          type: "string"
+          description: "SHA1 thumbprint of any proxy certificate in front of UAG forforwarding\
+            \ tunnel connections"
+        proxyTunnelSHA256Thumbprint:
+          type: "string"
+          description: "SHA256 thumbprint of any proxy certificate in front of UAG\
+            \ for for forwarding tunnel connections."
+        proxyPattern:
+          type: "string"
+          description: "Regular expression matching URI paths that are forwarded to\
+            \ the destination URL."
+        smartCardHintPrompt:
+          type: "boolean"
+          description: "Enable / disable the password hint for Certificate - Auth"
+        matchWindowsUserName:
+          type: "boolean"
+          description: "This boolean variable if configured true for securId-auth\
+            \ then then we enforce SecureID and Windows user name matching"
+        gatewayLocation:
+          type: "string"
+          description: "This is gateway-location header value which is used for Fine\
+            \ Grained Policy(FGP) by the backend services"
+        windowsSSOEnabled:
+          type: "boolean"
+          description: "This boolean variable if configured true for radius-auth then\
+            \ then the Windows login should use the name and passcode that was used\
+            \ in the first successful RADIUS access-request"
+        udpTunnelServerEnabled:
+          type: "boolean"
+          description: "Enable UDP tunnel server"
+        queryBrokerInterval:
+          type: "integer"
+          format: "int32"
+          description: "Querying connection broker polling time in seconds"
+        disableHtmlAccess:
+          type: "boolean"
+          description: "Disable resource lauch using Horizon Html client"
+        proxyDestinationIPSupport:
+          type: "string"
+          description: "Configuration for backend proxy (ideally View CS) supporting\
+            \ IP modes"
+          enum:
+          - "IPV4"
+          - "IPV6"
+          - "IPV4_IPV6"
+        radiusClassAttributeList:
+          type: "string"
+          description: "Class attributes to be used to authorize the user in case\
+            \ of Radiusauthentication. This is a comma separated list. Only applicable\
+            \ if auth method is Radius"
+        pcoipDisableLegacyCertificate:
+          type: "boolean"
+        securityHeaders:
+          type: "object"
+          description: "Key,Value pair of the security headers to be added to response"
+          additionalProperties:
+            type: "string"
+        jwtSettings:
+          type: "string"
+          description: "JWT Settings Name"
+        jwtAudiences:
+          type: "array"
+          description: "JWT expected Audience list"
+          items:
+            type: "string"
+  WsPortalEdgeServiceSettings:
+    allOf:
+    - $ref: "#/definitions/EdgeServiceSettings"
+    - type: "object"
+      required:
+      - "instanceId"
+      - "proxyPattern"
+      properties:
+        instanceId:
+          type: "string"
+          description: "Instance ID for identifying a Web reverse proxy instance"
+        externalUrl:
+          type: "string"
+          description: "Override the default External URL value. Format is [https://]host[:port].\
+            \ Default value (Access Point's host:443) will be used if not set."
+        proxyPattern:
+          type: "string"
+          description: "Proxy pattern"
+        unSecurePattern:
+          type: "string"
+          description: "Unsecure URL pattern for login page, static content"
+        authCookie:
+          type: "string"
+          description: "Authentication Cookie name"
+        loginRedirectURL:
+          type: "string"
+          description: "login Redirect URL"
+        proxyHostPattern:
+          type: "string"
+          description: "Proxy host pattern"
+        keyTabPrincipalName:
+          type: "string"
+          description: "KeyTab principal name to identify the keyTab to usefor Kerberos\
+            \ Constrained Delegation"
+        targetSPN:
+          type: "string"
+          description: "Target Service principal name. If not provided and keytab\
+            \ principal is set then it will be worked as HTTP/<host name of web rev\
+            \ proxy>@<realm of the principal name chosen>"
+        keyTabFilePath:
+          type: "string"
+        idpEntityID:
+          type: "string"
+          description: "Configure IDP entity for identity bridging"
+        landingPagePath:
+          type: "string"
+          description: "Configure the path to landing page in IDP initiated flow.\
+            \ By defaultpath will be set to '/'"
+        userNameHeader:
+          type: "string"
+          description: "Configure the name of the USER ID header to authenticate the\
+            \ userfor USER name based auth"
+        wrpAuthConsumeType:
+          type: "string"
+          enum:
+          - "SAML"
+          - "CERTIFICATE"
+        keyTabRealm:
+          type: "string"
+        samlAttributeHeaderMap:
+          type: "object"
+          additionalProperties:
+            type: "string"
+        securityHeaders:
+          type: "object"
+          description: "Key,Value pair of the security headers to be added to response"
+          additionalProperties:
+            type: "string"
+  ConfiguredAuthMethod:
+    type: "object"
+    required:
+    - "authMethodName"
+    properties:
+      authMethodName:
+        type: "string"
+        description: "The Auth method name "
+      enabled:
+        type: "boolean"
+        description: "Flag to check if auth method being enabled."
+        readOnly: true
+  ConfiguredEdgeService:
+    type: "object"
+    required:
+    - "edgeServiceName"
+    properties:
+      edgeServiceName:
+        type: "string"
+        description: "The edge service name "
+      enabled:
+        type: "boolean"
+        description: "Flag to check if edge service is enabled/disabled"
+        readOnly: true
+  ConfiguredEdgeServicesAndAuthMethodList:
+    type: "object"
+    required:
+    - "authMethodList"
+    - "edgeServiceList"
+    - "fipsEnabled"
+    - "tlsPortSharingEnabled"
+    - "uagName"
+    - "wrpAuthConsumeTypes"
+    properties:
+      edgeServiceList:
+        type: "array"
+        description: "List of edge service with enabled status flag."
+        items:
+          $ref: "#/definitions/ConfiguredEdgeService"
+      authMethodList:
+        type: "array"
+        description: "List of auth method with enabled status flag."
+        items:
+          $ref: "#/definitions/ConfiguredAuthMethod"
+      wrpAuthConsumeTypes:
+        type: "array"
+        description: "List of wrp auth consume types."
+        items:
+          type: "string"
+          enum:
+          - "SAML"
+          - "CERTIFICATE"
+      tlsPortSharingEnabled:
+        type: "boolean"
+        description: "TLS port sharing enabled property."
+      uagName:
+        type: "string"
+        description: "Appliance Name"
+      fipsEnabled:
+        type: "boolean"
+        description: "fips flag."
+      adminCertRolledBack:
+        type: "boolean"
+        description: "A read-only property to indicate if uploaded certificate on\
+          \ Admin interface was successful or it was rolled back to a generated self-signed\
+          \ cert"
+      user:
+        description: "Logged in user details"
+        $ref: "#/definitions/AdminUser"
+      privileges:
+        type: "array"
+        description: "Privileges granted to logged in user"
+        items:
+          type: "string"
+          enum:
+          - "FULL"
+          - "CONFIG_RO"
+          - "LOGLEVEL_RW"
+          - "LOGS_DOWNLOAD"
+          - "CONFIG_DOWNLOAD"
+          - "PASSWORD_CHANGE"
+  GeneralSettings:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        description: "Name of UAG appliance"
+      source:
+        type: "string"
+        description: "Path of OVA file"
+      target:
+        type: "string"
+        description: "Location in vCenter server, where UAG instance is deployed"
+      ds:
+        type: "string"
+        description: "vSphere data store name"
+      diskMode:
+        type: "string"
+        description: "vSphere disk provisioning mode"
+      netInternet:
+        type: "string"
+        description: "vSphere Internet facing network name"
+      netManagementNetwork:
+        type: "string"
+        description: "vSphere network name for management network, which hosts the\
+          \ administrative REST API"
+      netBackendNetwork:
+        type: "string"
+        description: "vSphere network to route traffic to backend services"
+      ipMode0:
+        type: "string"
+        description: "IP Address mode for NIC 1"
+      ipMode1:
+        type: "string"
+        description: "IP Address mode for NIC 2"
+      ipMode2:
+        type: "string"
+        description: "IP Address mode for NIC 3"
+      ip0:
+        type: "string"
+        description: "NIC 1 (eth0) IPv4 address"
+      eth0ErrorMsg:
+        type: "string"
+        description: "NIC 1 (eth0) error msg during update."
+      routes0:
+        type: "string"
+        description: "Comma separated list of IPv4 custom routes for NIC 1 (eth0)\
+          \ in the form ipv4-network-address/bits ipv4-gateway-address"
+      netmask0:
+        type: "string"
+        description: "Internet Netmask"
+      gateway0:
+        type: "string"
+        description: "Internet Default Gateway"
+      forceNetmask0:
+        type: "string"
+        description: "Internet Netmask"
+      forceIpv6Prefix0:
+        type: "string"
+        description: "Internet Netmask"
+      ip0AllocationMode:
+        type: "string"
+        description: "IP Allocation Mode for NIC 1"
+        enum:
+        - "STATICV4"
+        - "STATICV6"
+        - "DHCPV4"
+        - "DHCPV6"
+        - "AUTOV6"
+        - "STATICV4_STATICV6"
+        - "STATICV4_DHCPV6"
+        - "STATICV4_AUTOV6"
+        - "DHCPV4_STATICV6"
+        - "DHCPV4_DHCPV6"
+        - "DHCPV4_AUTOV6"
+        - "Static"
+        - "Dynamic"
+      defaultGateway:
+        type: "string"
+        description: "The default gateway address"
+      v6DefaultGateway:
+        type: "string"
+        description: "The default IPv6 gateway address"
+      ip1:
+        type: "string"
+        description: "NIC 2 (eth1) IPv4 address"
+      eth1ErrorMsg:
+        type: "string"
+        description: "NIC 2 (eth1) error msg during update."
+      routes1:
+        type: "string"
+        description: "Comma separated list of IPv4 custom routes for NIC 2 (eth1)\
+          \ in the form ipv4-network-address/bits ipv4-gateway-address"
+      netmask1:
+        type: "string"
+        description: "Management Network Netmask"
+      gateway1:
+        type: "string"
+        description: "Management Network Default Gateway"
+      forceNetmask1:
+        type: "string"
+        description: "Overriding Management Netmask"
+      forceIpv6Prefix1:
+        type: "string"
+        description: "Management Netmask"
+      ip1AllocationMode:
+        type: "string"
+        description: "IP Allocation Mode"
+        enum:
+        - "STATICV4"
+        - "STATICV6"
+        - "DHCPV4"
+        - "DHCPV6"
+        - "AUTOV6"
+        - "STATICV4_STATICV6"
+        - "STATICV4_DHCPV6"
+        - "STATICV4_AUTOV6"
+        - "DHCPV4_STATICV6"
+        - "DHCPV4_DHCPV6"
+        - "DHCPV4_AUTOV6"
+        - "Static"
+        - "Dynamic"
+      ip2:
+        type: "string"
+        description: "NIC 3 (eth2) IPv4 address"
+      eth2ErrorMsg:
+        type: "string"
+        description: "NIC 3 (eth2) error msg during update."
+      routes2:
+        type: "string"
+        description: "Comma separated list of IPv4 custom routes for NIC 3 (eth2)\
+          \ in the form ipv4-network-address/bits ipv4-gateway-address"
+      netmask2:
+        type: "string"
+        description: "Backend Network Netmask"
+      gateway2:
+        type: "string"
+        description: "Backend Network Default Gateway"
+      forceNetmask2:
+        type: "string"
+        description: "Overriding Backend Netmask"
+      forceIpv6Prefix2:
+        type: "string"
+        description: "Backend Netmask"
+      ip2AllocationMode:
+        type: "string"
+        description: "IP Allocation Mode"
+        enum:
+        - "STATICV4"
+        - "STATICV6"
+        - "DHCPV4"
+        - "DHCPV6"
+        - "AUTOV6"
+        - "STATICV4_STATICV6"
+        - "STATICV4_DHCPV6"
+        - "STATICV4_AUTOV6"
+        - "DHCPV4_STATICV6"
+        - "DHCPV4_DHCPV6"
+        - "DHCPV4_AUTOV6"
+        - "Static"
+        - "Dynamic"
+      deploymentOption:
+        type: "string"
+        description: "number of NICs. It can be onenic,twonic,threenic,onenic-large,twonic-large,threenic-large"
+      DNS:
+        type: "string"
+        description: "DNS server addresses"
+      DNS0:
+        type: "string"
+        description: "Internet DNS"
+      forwardrules:
+        type: "string"
+        description: "Comma separated list of forward rules in the form {tcp|udp}/listening-port-number/destination-ip-address:destination-port-number"
+      v6ip0:
+        type: "string"
+        description: "NIC 1 (eth0) IPv6 address"
+      v6ip1:
+        type: "string"
+        description: "NIC 2 (eth1) IPv6 address"
+      v6ip2:
+        type: "string"
+        description: "NIC 3 (eth2) IPv6 address"
+      ipv6prefix0:
+        type: "string"
+        description: "NIC 1 (eth0) Host Network Prefix"
+      ipv6prefix1:
+        type: "string"
+        description: "NIC 2 (eth1) Host Network Prefix"
+      ipv6prefix2:
+        type: "string"
+        description: "NIC 3 (eth2) Host Network Prefix"
+  IdPExternalMetadataSettings:
+    type: "object"
+    properties:
+      entityID:
+        type: "string"
+      metadata:
+        type: "string"
+  IdPExternalMetadataSettingsList:
+    type: "object"
+    required:
+    - "idPExternalMetadataSettingsList"
+    properties:
+      idPExternalMetadataSettingsList:
+        type: "array"
+        description: "List of keyTabs settings - usually from powershell on first\
+          \ boot."
+        items:
+          $ref: "#/definitions/IdPExternalMetadataSettings"
+  IdpMediaType:
+    type: "object"
+    properties:
+      metadataXml:
+        type: "string"
+      _links:
+        type: "object"
+        readOnly: true
+        additionalProperties:
+          $ref: "#/definitions/Link"
+  Link:
+    type: "object"
+    properties:
+      href:
+        type: "string"
+        format: "uri"
+      params:
+        $ref: "#/definitions/LinkParams"
+  LinkParams:
+    type: "object"
+  CertificateChainAndKeyWrapper:
+    type: "object"
+    required:
+    - "certChainPem"
+    - "privateKeyPem"
+    properties:
+      privateKeyPem:
+        type: "string"
+        description: "Private key for the certificate in PEM format"
+      certChainPem:
+        type: "string"
+        description: "Entire certificate chain in PEM format. Chain will be stored\
+          \ in the order target cert, intermediate certs, root cert if present"
+  JWTSettings:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      publicKeys:
+        type: "array"
+        items:
+          $ref: "#/definitions/PublicKeyOrCert"
+  JWTSettingsList:
+    type: "object"
+    required:
+    - "jwtSettingsList"
+    properties:
+      jwtSettingsList:
+        type: "array"
+        description: "List of JWT settings."
+        items:
+          $ref: "#/definitions/JWTSettings"
+  KerberosKeyTabSettings:
+    type: "object"
+    required:
+    - "keyTab"
+    properties:
+      principalName:
+        type: "string"
+        description: "Principal name to be used in the keyTab file.if not provided\
+          \ the first principal name in the keytab file will be extracted and set\
+          \ on this field."
+      keyTab:
+        type: "string"
+        description: "Base64 encoded keyTab file content"
+      keyTabFilePath:
+        type: "string"
+      realm:
+        type: "string"
+  KerberosRealmSettings:
+    type: "object"
+    required:
+    - "kdcHostNameList"
+    - "name"
+    properties:
+      name:
+        type: "string"
+        description: "Name of the realm."
+      kdcHostNameList:
+        type: "array"
+        description: "kdc host name list"
+        items:
+          type: "string"
+      kdcTimeout:
+        type: "integer"
+        format: "int32"
+        description: "time to wait for kdc to respond. This value is provided in seconds.by\
+          \ default the value is set as 3 seconds (KDC default if not provided)"
+      noOfWRPsUsingThisRealm:
+        type: "integer"
+        format: "int32"
+        description: "A read only property to indicate the number of web reverse proxies\
+          \ using this realm"
+  KerberosRealmSettingsList:
+    type: "object"
+    required:
+    - "kerberosRealmSettingsList"
+    properties:
+      kerberosRealmSettingsList:
+        type: "array"
+        description: "List of keyTabs settings - usually from powershell on first\
+          \ boot."
+        items:
+          $ref: "#/definitions/KerberosRealmSettings"
+  LoadBalancerSettings:
+    type: "object"
+    required:
+    - "groupID"
+    - "loadBalancerMode"
+    - "virtualIPAddress"
+    properties:
+      virtualIPAddress:
+        type: "string"
+        description: "Virtual IP address used by Load Balancer"
+      groupID:
+        type: "integer"
+        format: "int32"
+        description: "Load balancer Group ID. Give value between 1 - 255"
+      loadBalancerMode:
+        type: "string"
+        description: "Mode for Load Balancer. ONEARM - UAG in a cluster load balancing\
+          \ each otherINLINE - UAG acting as load balancer load balancing other UAG's\
+          \ behind it"
+        enum:
+        - "DISABLED"
+        - "ONEARM"
+  NicSettings:
+    type: "object"
+    required:
+    - "allocationMode"
+    - "ipv4Address"
+    - "ipv4Netmask"
+    - "nic"
+    properties:
+      ipv4Address:
+        type: "string"
+        description: "New IPV4 address for the Nic."
+      ipv4Netmask:
+        type: "string"
+        description: "New IPV4 netmask for the Nic."
+      ipv4DefaultGateway:
+        type: "string"
+        description: "New IPV4 default gateway"
+      nic:
+        type: "string"
+        description: "The NIC identifier, can have value eth0,eth1,eth2 based on VM\
+          \ configuration selected"
+        enum:
+        - "eth0"
+        - "eth1"
+        - "eth2"
+      allocationMode:
+        type: "string"
+        description: "The IP allocation mode."
+        enum:
+        - "STATICV4"
+        - "STATICV6"
+        - "DHCPV4"
+        - "DHCPV6"
+        - "AUTOV6"
+        - "STATICV4_STATICV6"
+        - "STATICV4_DHCPV6"
+        - "STATICV4_AUTOV6"
+        - "DHCPV4_STATICV6"
+        - "DHCPV4_DHCPV6"
+        - "DHCPV4_AUTOV6"
+        - "Static"
+        - "Dynamic"
+      ipv4StaticRoutes:
+        type: "string"
+        description: "The IPV4 static routes to be defined for this NIC. Comma separated\
+          \ list of routes in the form ipv4-network-address/bits ipv4-gateway address\
+          \ or ipv4-network-address/bits eg: 20.2.0.0/16 10.2.0.1, 30.2.0.0/16"
+  NicSettingsList:
+    type: "object"
+    required:
+    - "nicSettingsList"
+    properties:
+      nicSettingsList:
+        type: "array"
+        description: "List of Nic settings."
+        items:
+          $ref: "#/definitions/NicSettings"
+  SpMediaType:
+    type: "object"
+    properties:
+      spName:
+        type: "string"
+      metadataXml:
+        type: "string"
+      assertionLifetime:
+        type: "integer"
+        format: "int32"
+      _links:
+        type: "object"
+        readOnly: true
+        additionalProperties:
+          $ref: "#/definitions/Link"
+  SpMediaTypes:
+    type: "object"
+    properties:
+      items:
+        type: "array"
+        items:
+          $ref: "#/definitions/SpMediaType"
+      _links:
+        type: "object"
+        readOnly: true
+        additionalProperties:
+          $ref: "#/definitions/Link"
+  KerberosKeyTabSettingsList:
+    type: "object"
+    required:
+    - "kerberosKeyTabSettings"
+    properties:
+      kerberosKeyTabSettings:
+        type: "array"
+        description: "List of keyTabs settings - usually from powershell on first\
+          \ boot."
+        items:
+          $ref: "#/definitions/KerberosKeyTabSettings"
+  PfxCertStoreWrapper:
+    type: "object"
+    required:
+    - "pfxKeystore"
+    properties:
+      pfxKeystore:
+        type: "string"
+        description: "PFX certificate store in base64 encoded format"
+      password:
+        type: "string"
+        description: "PFX certificate store password"
+      alias:
+        type: "string"
+        description: "If the pfx certificate store has multiple certificates then\
+          \ an alias has to be provided. This is optional by default for pfx certificate\
+          \ store having only one certificate"
+  Settings:
+    type: "object"
+    properties:
+      generalSettings:
+        description: "General settings."
+        $ref: "#/definitions/GeneralSettings"
+      systemSettings:
+        description: "System settings."
+        $ref: "#/definitions/SystemSettings"
+      edgeServiceSettingsList:
+        description: "Edge service settings."
+        $ref: "#/definitions/EdgeServiceSettingsList"
+      authMethodSettingsList:
+        description: "Authenication method settings."
+        $ref: "#/definitions/AuthMethodSettingsList"
+      kerberosKeyTabSettingsList:
+        description: "Keytab settings."
+        $ref: "#/definitions/KerberosKeyTabSettingsList"
+      kerberosRealmSettingsList:
+        description: "Kerberos Realm settings."
+        $ref: "#/definitions/KerberosRealmSettingsList"
+      certificateWrapper:
+        description: "SSL/TLS server certificate for ESManager."
+        $ref: "#/definitions/CertificateChainAndKeyWrapper"
+      certificateWrapperAdmin:
+        description: "SSL/TLS server certificate for Admin."
+        $ref: "#/definitions/CertificateChainAndKeyWrapper"
+      serviceProviderMetadataList:
+        description: "Service provider metadata."
+        $ref: "#/definitions/SpMediaTypes"
+      identityProviderMetaData:
+        description: "Identity provider metadata request"
+        $ref: "#/definitions/CertificateChainAndKeyWrapper"
+      pfxCertStoreWrapper:
+        description: "SSL/TLS server certificate for ESManager in p12/pfx format"
+        $ref: "#/definitions/PfxCertStoreWrapper"
+      pfxCertStoreWrapperAdmin:
+        description: "SSL/TLS server certificate for Admin in p12/pfx format"
+        $ref: "#/definitions/PfxCertStoreWrapper"
+      idpMediaType:
+        description: "Identity provider metadata response"
+        $ref: "#/definitions/IdpMediaType"
+      customBrandingSettings:
+        description: "custom branding resource details"
+        $ref: "#/definitions/CustomBrandingSettings"
+      idPExternalMetadataSettingsList:
+        description: "Identity provider external metadata settings"
+        $ref: "#/definitions/IdPExternalMetadataSettingsList"
+      devicePolicySettingsList:
+        description: "Device Policy settings list"
+        $ref: "#/definitions/DevicePolicySettingsList"
+      loadBalancerSettings:
+        description: "Load Balancer Settings"
+        $ref: "#/definitions/LoadBalancerSettings"
+      jwtSettingsList:
+        description: "JWT Settings List"
+        $ref: "#/definitions/JWTSettingsList"
+  SystemSettings:
+    type: "object"
+    properties:
+      locale:
+        type: "string"
+        description: "The locale to use for internationalizing messages from this\
+          \ access point,defaults to en_US."
+      fipsEnabled:
+        type: "boolean"
+        description: "This is a read-only property to indicate that this access point\
+          \ is FIPS compliant/non-compliant"
+      adminPassword:
+        type: "string"
+        description: "The password for the REST interface admin user. This password\
+          \ must be at least 8 characters, contain at least 1 uppercase, lowercase,\
+          \ digit, and special character, and may not contain any non-printing characters."
+      adminPasswordExpirationDays:
+        type: "integer"
+        format: "int32"
+        description: "The expiration time for admin password (in days)"
+      adminPasswordSetTime:
+        type: "string"
+        description: "The time at which the admin password was set/reset"
+      cipherSuites:
+        type: "string"
+        description: "The set of SSL/TLS cipher suites to be enabled. Format: a comma\
+          \ separated list of cipher suite names. If not set, a default list is used."
+      honorCipherOrder:
+        type: "boolean"
+        description: "TLS cipher list order control."
+      ssl30Enabled:
+        type: "boolean"
+        description: "SSL 3.0 enabled."
+      tls10Enabled:
+        type: "boolean"
+        description: "TLS 1.0 enabled."
+      tls11Enabled:
+        type: "boolean"
+        description: "TLS 1.1 enabled."
+      tls12Enabled:
+        type: "boolean"
+        description: "TLS 1.2 enabled."
+      syslogUrl:
+        type: "string"
+        description: "Overrides the default syslog server/port Format is [syslog://]hostname[:port].\
+          \ Default value (localhost)  will be used if not set."
+      syslogAuditUrl:
+        type: "string"
+        description: "Overrides the default syslogAudit server/port Format is [syslog://]hostname[:port].\
+          \ Default value (localhost)  will be used if not set."
+      healthCheckUrl:
+        type: "string"
+        description: "Health check url to be used. Default is /favicon.ico"
+      cookiesToBeCached:
+        type: "string"
+        description: "Set of cookies to be cached by AP"
+      ipMode:
+        type: "string"
+        description: "Indicates the mode of UAG for NIC 1 (eth0)"
+        enum:
+        - "STATICV4"
+        - "STATICV6"
+        - "DHCPV4"
+        - "DHCPV6"
+        - "AUTOV6"
+        - "STATICV4_STATICV6"
+        - "STATICV4_DHCPV6"
+        - "STATICV4_AUTOV6"
+        - "DHCPV4_STATICV6"
+        - "DHCPV4_DHCPV6"
+        - "DHCPV4_AUTOV6"
+        - "Static"
+        - "Dynamic"
+      ipModeforNIC2:
+        type: "string"
+        description: "Indicates the mode of UAG for NIC 2 (eth1)"
+        enum:
+        - "STATICV4"
+        - "STATICV6"
+        - "DHCPV4"
+        - "DHCPV6"
+        - "AUTOV6"
+        - "STATICV4_STATICV6"
+        - "STATICV4_DHCPV6"
+        - "STATICV4_AUTOV6"
+        - "DHCPV4_STATICV6"
+        - "DHCPV4_DHCPV6"
+        - "DHCPV4_AUTOV6"
+        - "Static"
+        - "Dynamic"
+      ipModeforNIC3:
+        type: "string"
+        description: "Indicates the mode of UAG for NIC 3 (eth2)"
+        enum:
+        - "STATICV4"
+        - "STATICV6"
+        - "DHCPV4"
+        - "DHCPV6"
+        - "AUTOV6"
+        - "STATICV4_STATICV6"
+        - "STATICV4_DHCPV6"
+        - "STATICV4_AUTOV6"
+        - "DHCPV4_STATICV6"
+        - "DHCPV4_DHCPV6"
+        - "DHCPV4_AUTOV6"
+        - "Static"
+        - "Dynamic"
+      defaultRedirectHost:
+        type: "string"
+      sessionTimeout:
+        type: "integer"
+        format: "int64"
+        description: "Session timeout in milliseconds. Set by default to 10 hours"
+      requestTimeoutMsec:
+        type: "integer"
+        format: "int64"
+        description: "maximum time in seconds to wait for a request to be received"
+      bodyReceiveTimeoutMsec:
+        type: "integer"
+        format: "int64"
+        description: "maximum time in seconds to wait for a request body to be received"
+      authenticationTimeout:
+        type: "integer"
+        format: "int64"
+        description: "maximum wait time in seconds before which authentication must\
+          \ happen"
+      quiesceMode:
+        type: "boolean"
+        description: "quiesce mode"
+      monitorInterval:
+        type: "integer"
+        format: "int32"
+        description: "This is for monitoring AP"
+      httpConnectionTimeout:
+        type: "integer"
+        format: "int32"
+        description: "Timeout to wait for connection attempt to succeed. This will\
+          \ also be the response read timeout(Default value is 120 seconds)"
+      tlsPortSharingEnabled:
+        type: "boolean"
+        description: "Enable HAProxy for TLS port sharing"
+      uagName:
+        type: "string"
+        description: "Name assigned to the UAG appliance"
+      ceipEnabled:
+        type: "boolean"
+        description: "Enable/disable posting CEIP data to VMware"
+      adminCertRolledBack:
+        type: "boolean"
+        description: "A read-only property to indicate if uploaded certificate on\
+          \ Admin interface was successful or it was rolled back to a generated self-signed\
+          \ cert"
+      clientConnectionIdleTimeout:
+        type: "integer"
+        format: "int32"
+        description: "Indicates the time (in seconds) a client connection can stay\
+          \ idle before the connection will be closed. Default value is 360 seconds\
+          \ (6 minutes).A value of Zero means infinite time i.e no idle timeout"
+      sshEnabled:
+        type: "boolean"
+      dns:
+        type: "string"
+        description: "DNS server addresses"
+      dnsSearch:
+        type: "string"
+        description: "DNS search list"
+      snmpEnabled:
+        type: "boolean"
+        description: "SNMP service enabled or disabled"
+      ntpServers:
+        type: "string"
+        description: "Primary NTP servers to configure for time sync. Space separated\
+          \ list"
+      fallBackNtpServers:
+        type: "string"
+        description: "Fallback NTP servers to configure for time sync. Space separated\
+          \ list"
+      clockSkewTolerance:
+        type: "integer"
+        format: "int32"
+        description: "The clock skew tolerance (in secs) in UAG. Default value is\
+          \ 10 mins"
