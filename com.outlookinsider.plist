@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.chromekerberos.daemon</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/outlookinsider.sh</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/usr/local/com.outlookinsider.daemon.err</string>
+	<key>StandardOutPath</key>
+	<string>/usr/local/com.outlookinsider.daemon.out</string>
+</dict>
+</plist>
