@@ -1,0 +1,17 @@
+{
+ "policies": {
+ "DisablePrivateBrowsing": true,
+   "Preferences": {
+   "security.default_personal_cert": "Select Automatically",
+   "security.osclientcerts.autoload": true
+   },
+   "Certificates": {
+   "security.enterprise_roots.enabled": true
+},
+ "Homepage": {
+ "URL": "https://mobile-jon.com",
+ "Locked": true,
+ "StartPage": "homepage"
+}
+ }
+}
