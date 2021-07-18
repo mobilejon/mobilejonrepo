@@ -1,8 +1,7 @@
-# Imports Access API Module from William Lam
 #Forces the use of TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$HTML = Get-Content $PSScriptRoot\template.html -Raw
+$HTML = Get-Content C:\temp\template.html -Raw
 $FirstName = Read-Host -Prompt 'Enter the New Hire First Name'
 $LastName = Read-Host -Prompt 'Enter the New Hire Last Name'
 $Username = $FirstName.Substring(0,1) + $LastName
@@ -13,23 +12,25 @@ $HTML = $HTML -replace "{Username}", $username
 $HTML = $HTML -replace "{Access_URL}", $AccessURL
 
 ##Start-Sleep -s 30
-$ClientId                 = 'PostmanClient'
-$ClientSecret             = ''
+$ClientId = ''
+$ClientSecret = ''
 $text = "${ClientId}:${ClientSecret}"
 $base64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($text))
-    $headers = @{
+$headers = @{
         "Authorization"="Basic $base64";
         "Content-Type"="application/x-www-form-urlencoded";
     }
+
+$results = Invoke-WebRequest -Uri "https://$AccessURL/SAAS/auth/oauthtoken?grant_type=client_credentials" -Method POST -Headers $headers
+$accessToken = ($results.Content | ConvertFrom-Json).access_token
   $authHeader = @{
         "Authorization"="Bearer $accessToken";
     }
       $global:workspaceOneAccessConnection = new-object PSObject -Property @{
         'Server' = "https://$AccessURL"
         'headers' = $authHeader
-    } $global:workspaceOneAccessConnection
-$results = Invoke-WebRequest -Uri "https://$AccessURL/SAAS/auth/oauthtoken?grant_type=client_credentials" -Method POST -Headers $headers
-$accessToken = ($results.Content | ConvertFrom-Json).access_token
+    } 
+$global:workspaceOneAccessConnection
 ## Sync-Directory -DomainID $DomainID
 
 
@@ -60,16 +61,18 @@ Invoke-RestMethod -uri "https://$AccessURL/SAAS/jersey/manager/api/token/auth/st
     $MLbody = $MLjson | ConvertTo-Json
 
 $OTURL = Invoke-RestMethod -Uri "https://$AccessURL/SAAS/jersey/manager/api/token/auth/state" -Method POST -Headers $MLheaders -Body $MLbody
-$OTURL.loginLink = $OTURL
+$OTURL = $OTURL.loginLink
 $HTML = $HTML -replace "https://replace.this.com", $OTURL
+
+$secpasswd = ConvertTo-SecureString "" -AsPlainText -Force
 
 $mailParams = @{
     SmtpServer               = 'smtp.office365.com'
     Port                     = '587' 
     UseSSL                   = $true
-    Credential               = (Get-Credential)
+    Credential               = New-Object System.Management.Automation.PSCredential ("", $secpasswd)
     From                     = ''
-    To                       = ''
+    To                       = Read-Host -Prompt 'Enter the Email Address to send the New Hire Email'
     Subject                  = "Welcome to the Resistance"
     Body                     = $HTML
     BodyAsHtml               = $true
