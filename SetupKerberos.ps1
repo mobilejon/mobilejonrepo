@@ -10,9 +10,9 @@ $sAMAccountName = Read-Host -Prompt 'Enter the Service Account Username'
 $machineDomain = (Get-WmiObject win32_computersystem).Domain
 $machineName = (Get-WmiObject win32_computersystem).DNSHostName
 $spn = "HTTP/"+$machineName+"."+$machineDomain
-setspn -s $spn $machineName
+setspn -s $spn@$rootDomain $sAMAccountName
 
 ##Generate the Keytab
 $password = Read-Host -Prompt 'Enter the Service Account Password'
 $keytabFile = 'C:\temp\krb5.keytab'
-C:\windows\system32\ktpass.exe -princ $spn@$rootDomain -mapuser $sAMAccountName@$rootDomain -crypto RC4-HMAC-NT -ptype KRB5_NT_PRINCIPAL -pass $password -out $keytabFile
+ktpass.exe -mapuser $sAMAccountName@$rootDomain -princ $spn@$rootDomain  -crypto RC4-HMAC-NT -ptype KRB5_NT_PRINCIPAL -pass $password -out $keytabFile
