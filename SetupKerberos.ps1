@@ -10,6 +10,7 @@ $sAMAccountName = Read-Host -Prompt 'Enter the Service Account Username'
 $machineDomain = (Get-WmiObject win32_computersystem).Domain
 $machineName = (Get-WmiObject win32_computersystem).DNSHostName
 $spn = "HTTP/"+$machineName+"."+$machineDomain
+$shortSpn = "HTTP/"+$machineName
 setspn -s $spn@$rootDomain $sAMAccountName
 Set-ADUser -Identity $sAMAccountName -PasswordNotRequired $true
 
