@@ -1,0 +1,14 @@
+./VMware-AirWatch-KCD-Client -m kerberostest -n spn -w service_account@domain_lowercase@DOMAIN_UPPERCASE -p password -u USERNAME_UPPERCASE@DOMAIN_UPPERCASE
+
+        For example:
+
+./VMware-AirWatch-KCD-Client -m kerberostest -n HTTP/mail-vmwkcd.ssdevrd.com -w servKCD@vmwkcd.org@VMWKCD.ORG -p Password@2 -u MEM1@VMWKCD.ORG
+
+For UAG 3.10 or later:
+In this case KCD client binary is located in "kerberos-client" subfolder of the working directory ("/opt/vmware/seg/kerberos-client"), and named as VMware-KCD-Client. Run the below command.
+
+  ./kerberos-client/VMware-KCD-Client -m kerberostest -n spn -w service_account@domain_lowercase@DOMAIN_UPPERCASE -p password -u USERNAME_UPPERCASE@DOMAIN_UPPERCASE
+
+        For example:
+
+./kerberos-client/VMware-KCD-Client -m kerberostest -n HTTP/mail-vmwkcd.ssdevrd.com -w servKCD@vmwkcd.org@VMWKCD.ORG -p Password@2 -u MEM1@VMWKCD.ORG
