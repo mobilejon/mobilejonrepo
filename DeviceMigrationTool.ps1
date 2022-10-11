@@ -30,6 +30,10 @@ $username = Read-Host -Prompt 'Enter the username for the device you want to mig
 
 $deviceresults = Invoke-RestMethod -Headers $header -method Get "https://$apihost/API/mdm/devices?searchby=SerialNumber&id=$serialnumber"
 $deviceid = $deviceresults.id.value
+
+##Get the User ID##
+$userresults = Invoke-RestMethod -headers $header -Uri "https://$apihost/API/system/users/search?username=$username"
+$userid = $userresults.users.id.value
 ##Migrate the Device##
 Invoke-RestMethod -Headers $header -method Patch https://$apihost/API/mdm/devices/$deviceid/enrollmentuser/$userid
 ##Query and Sync Device##
@@ -38,5 +42,5 @@ Invoke-Restmethod -Method Post -Uri "https://$apihost/api/mdm/devices/$deviceid/
 Invoke-Restmethod -Method Post -Uri "https://$apihost/api/mdm/devices/$deviceid/commands?command=DeviceQuery" -ContentType "application/json" -Header $header
 ##Sync VPP Assets when Finished##
 
-$groupid = Read-Host -Prompt 'Enter your Group ID to Sync your Apple VPP Assets'
+$groupid = Read-Host -Prompt 'Enter the Group ID where your VPP is Setup'
 Invoke-RestMethod -Headers $header -method Put https://$apihost/API/mam/apps/purchased/VppSyncAssets/$groupid
