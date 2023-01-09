@@ -1,15 +1,18 @@
-#Forces the use of TLS 1.2
+ #Forces the use of TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+##Declares Variables for the Date Filter for Audit Logs##
 $date1 = Get-Date -Date "01/01/1970"
 $date2 = (Get-Date).adddays(-7)  
 $date3 = (Get-Date) 
 $timespan =  (New-TimeSpan -Start $date1 -End $date2).TotalMilliSeconds
 $timespan2 = (New-TimeSpan -Start $date1 -End $date3).TotalMilliSeconds
+##Declares the Variables for the Filter itself
 $fromMillis = [math]::Floor($timespan)
 $toMillis = [math]::Floor($timespan2)
-$AccessURL = ''
 
-##Start-Sleep -s 30
+##Specify your Access Hostname
+$AccessURL = ''
+##Specify your oAuth Client ID and Secret
 $ClientId = ''
 $ClientSecret = ''
 $text = "${ClientId}:${ClientSecret}"
@@ -18,7 +21,7 @@ $headers = @{
         "Authorization"="Basic $base64";
         "Content-Type"="application/x-www-form-urlencoded";
     }
-
+##Auth and Get your Bearer Token##
 $results = Invoke-WebRequest -Uri "https://$AccessURL/SAAS/auth/oauthtoken?grant_type=client_credentials" -Method POST -Headers $headers
 $accessToken = ($results.Content | ConvertFrom-Json).access_token
   $authHeader = @{
@@ -29,11 +32,10 @@ $accessToken = ($results.Content | ConvertFrom-Json).access_token
         'headers' = $authHeader
     } 
 $global:workspaceOneAccessConnection
+ ##Declare the Header for your Audit Log Query##    
 
-     $Headers = @{
-        "Accept"="application/vnd.vmware.horizon.manager.reports.table+json"
-        "x-tenant-id"=""
-        "Content-Type"="application/vnd.vmware.horizon.manager.reports.table+json"
+$Headers = @{
+        "x-tenant-id"=""      
         "Authorization"=$global:workspaceOneAccessConnection.headers.Authorization;
     }
     $global:workspaceOneAccessConnection
@@ -42,6 +44,11 @@ $global:workspaceOneAccessConnection
        "x-tenant-id"=""
        "Authorization"=$global:workspaceOneAccessConnection.headers.Authorization;
    }
-$Response = Invoke-RestMethod -Uri "https://$AccessURL/analytics/reports/audit?objectType=RuleSet&fromMillis=$fromMillis&toMillis=$toMillis" -Method GET -headers $Headers
-$encdata = $Response.data[0][4] | ConvertFrom-Json
-$encdata | Export-CSV "C:\temp\AccessAuditLogs-$date.csv"
+##Perform the Audit Log Query##
+$Response = Invoke-RestMethod -Uri "https://$AccessURL/analytics/reports/audit?objectType=RuleSet&fromMillis=$fromMillis&toMillis=$toMillis -headers $Headers
+##Build the Array
+$list = New-Object System.Collections.ArrayList
+for ($i=0; $i -lt $response.data.length; $i++)
+##Populate the Array
+{$list.Add(($response.data[$i][4] | ConvertFrom-Json))}
+$List | Export-CSV "C:\temp\auditlog.csv"
