@@ -44,11 +44,32 @@ $Headers = @{
        "x-tenant-id"=""
        "Authorization"=$global:workspaceOneAccessConnection.headers.Authorization;
    }
-##Perform the Audit Log Query##
-$Response = Invoke-RestMethod -Uri "https://$AccessURL/analytics/reports/audit?objectType=RuleSet&fromMillis=$fromMillis&toMillis=$toMillis -headers $Headers
-##Build the Array
+##Perform Audit Search
+$Response = Invoke-RestMethod -Uri "https://$AccessURL/analytics/reports/audit?objectType=RuleSet&fromMillis=$fromMillis&toMillis=$toMillis" -Method GET -headers $Headers
 $list = New-Object System.Collections.ArrayList
 for ($i=0; $i -lt $response.data.length; $i++)
-##Populate the Array
 {$list.Add(($response.data[$i][4] | ConvertFrom-Json))}
+##Capture AuthMethods into Array and Re-write Audit Log##
+$authmethods = Invoke-RestMethod -Uri "https://$AccessURL/SAAS/jersey/manager/api/authmethods" -Method GET -Headers $headers
+$authmethods = $authmethods.items | Select-Object authMethodName, uuid
+$authnmethods=Get-Content -Path C:\temp\internalauthmethodlist.json | ConvertFrom-Json
+for ($i=0; $i -lt $response.data.length; $i++)
+{ $list.Add(($response.data[$i][4] | ConvertFrom-Json))| out-null
+
+}
+foreach ($item in $list){
+foreach ($authmethod in $authnmethods.Methods) {
+$item.values = $item.values -replace $authmethod.ID, $authmethod.Name
+if ($item.psobject.Properties.name -contains "oldValues") {
+$item.oldValues = $item.oldValues -replace $authmethod.ID, $authmethod.Name}
+}
+}
+foreach ($item in $list){
+    foreach ($authmethod in $authmethods) { 
+        $item.values = $item.values -replace $authmethod.uuid, $authmethod.authMethodName 
+        if ($item.PSObject.Properties.name -contains "oldValues") {
+            $item.oldValues = $item.oldValues -replace $authmethod.uuid, $authmethod.authMethodName
+        }
+}
+}
 $List | Export-CSV "C:\temp\auditlog.csv"
