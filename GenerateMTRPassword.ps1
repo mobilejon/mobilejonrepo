@@ -23,3 +23,9 @@ $fileSystemAccessRule = New-Object -TypeName System.Security.AccessControl.FileS
 $NewAcl = Get-Acl -Path "C:\Users\Skype\AppData\Local\Packages\Microsoft.SkypeRoomSystem_8wekyb3d8bbwe\LocalState\SkypeSettings.xml"
 $NewAcl.SetAccessRule($fileSystemAccessRule)
 Set-Acl -Path "C:\Users\Skype\AppData\Local\Packages\Microsoft.SkypeRoomSystem_8wekyb3d8bbwe\LocalState\SkypeSettings.xml" -AclObject $NewAcl'
+
+##Setup Scheduler
+$Time = New-ScheduledTaskTrigger -Daily -DaysInterval 85 -At 1am
+$action = New-ScheduledTaskAction -Execute "Powershell.exe" -Argument "C:\temp\GenerateMTRPassword.ps1"
+$settings = New-ScheduledTaskSettingsSet -RunOnlyIfNetworkAvailable -WakeToRun
+Register-ScheduledTask -Action $action -TaskName "Generate Password" -Trigger $time -Settings $settings -User "System" -Force
