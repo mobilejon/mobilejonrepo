@@ -1,0 +1,102 @@
+<Replace>
+  <CmdID>5a34d566-c95e-4e3a-aff8-0a25f0edc4e6</CmdID>
+  <Item>
+    <Target>    
+ <LocURI>./Device/Vendor/MSFT/Policy/Config/CloudDesktop/BootToCloudMode</LocURI>
+      </Target>
+    <Meta>
+      <Format xmlns="syncml:metinf">int</Format>
+    </Meta>
+    <Data>1</Data>
+  </Item>
+</Replace>
+<Replace>
+  <CmdID>1474a0b5-055d-4b26-b54b-5d212e75e902</CmdID>
+  <Item>
+    <Target>     <LocURI>./Device/Vendor/MSFT/Policy/Config/WindowsLogon/OverrideShellProgram</LocURI>
+      </Target>
+    <Meta>
+      <Format xmlns="syncml:metinf">int</Format>
+      <Type>text/plain</Type>
+    </Meta>
+    <Data>1</Data>
+  </Item>
+</Replace>
+<Replace>
+  <CmdID>c52720e2-b3f1-46ec-aa12-a1e47fe5d813</CmdID>
+  <Item>
+    <Target>
+        <LocURI>./Vendor/MSFT/SharedPC/EnableSharedPCMode</LocURI>
+      </Target>
+    <Meta>
+      <Format xmlns="syncml:metinf">bool</Format>
+      <Type>text/plain</Type>
+    </Meta>
+    <Data>True</Data>
+  </Item>
+</Replace>
+<Replace>
+  <CmdID>90cebbf8-2468-43b7-a2f9-a9dd36b8e0b3</CmdID>
+  <Item>
+    <Target>        
+<LocURI>./Vendor/MSFT/SharedPC/EnableWIPFlighting</LocURI>
+      </Target>
+    <Meta>
+      <Format xmlns="syncml:metinf">bool</Format>
+      <Type>text/plain</Type>
+    </Meta>
+    <Data>True</Data>
+  </Item>
+</Replace>
+
+<Delete>
+  <CmdID>5a34d566-c95e-4e3a-aff8-0a25f0edc4e6</CmdID>
+  <Item>
+    <Target>     
+<LocURI>./Device/Vendor/MSFT/Policy/Config/CloudPC/CloudPCConfiguration</LocURI>
+      </Target>
+    <Meta>
+      <Format xmlns="syncml:metinf">int</Format>
+      <Type>text/plain</Type>
+    </Meta>
+    <Data>1</Data>
+  </Item>
+</Delete>
+<Delete>
+  <CmdID>1474a0b5-055d-4b26-b54b-5d212e75e902</CmdID>
+  <Item>
+    <Target>     <LocURI>./Device/Vendor/MSFT/Policy/Config/WindowsLogon/OverrideShellProgram</LocURI>
+      </Target>
+    <Meta>
+      <Format xmlns="syncml:metinf">int</Format>
+      <Type>text/plain</Type>
+    </Meta>
+    <Data>1</Data>
+  </Item>
+</Delete>
+<Delete>
+  <CmdID>c52720e2-b3f1-46ec-aa12-a1e47fe5d813</CmdID>
+  <Item>
+    <Target>
+        <LocURI>./Vendor/MSFT/SharedPC/EnableSharedPCMode</LocURI>
+      </Target>
+    <Meta>
+      <Format xmlns="syncml:metinf">bool</Format>
+      <Type>text/plain</Type>
+    </Meta>
+    <Data>True</Data>
+  </Item>
+</Delete>
+<Delete>
+  <CmdID>90cebbf8-2468-43b7-a2f9-a9dd36b8e0b3</CmdID>
+  <Item>
+    <Target>        
+<LocURI>./Vendor/MSFT/SharedPC/EnableWindowsInsiderPreviewFlighting</LocURI>
+      </Target>
+    <Meta>
+      <Format xmlns="syncml:metinf">bool</Format>
+      <Type>text/plain</Type>
+    </Meta>
+    <Data>True</Data>
+  </Item>
+</Delete>
