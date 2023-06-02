@@ -1,0 +1,9 @@
+file 
+{ 'slack-desktop-4.32.122-amd64.deb': source => 'https://downloads.slack-edge.com/releases/linux/4.32.122/prod/x64/slack-desktop-4.32.122-amd64.deb', 
+path => '/tmp/slack-desktop-4.32.122-amd64.deb', 
+ensure => present, } 
+exec { 'install-slack': command => '/usr/bin/dpkg -i /tmp/slack-desktop-4.32.122-amd64.deb', 
+logoutput => true, }
+
+Remove:
+package { 'slack-desktop': ensure => 'absent', }
