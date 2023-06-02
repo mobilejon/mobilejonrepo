@@ -1,0 +1,9 @@
+Install:
+file { 'microsoft-edge-stable_113.0.1774.57-1_amd64.deb': source => 'https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_113.0.1774.57-1_amd64.deb?brand=M102', 
+path => '/tmp/microsoft-edge-stable_113.0.1774.57-1_amd64.deb', 
+ensure => present, } 
+exec { 'install-edge': command => '/usr/bin/dpkg -i /tmp/microsoft-edge-stable_113.0.1774.57-1_amd64.deb',
+logoutput => true, }
+
+Remove:
+package { 'microsoft-edge-stable': ensure => 'absent', }
