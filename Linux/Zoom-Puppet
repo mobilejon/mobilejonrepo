@@ -1,0 +1,5 @@
+Install:
+exec { 'apt-install': command => '/usr/bin/apt-get install -f'}
+file { 'zoom-desktop-5.14.7.2928-amd64.deb': source => 'https://zoom.us/client/5.14.7.2928/zoom_amd64.deb', path => '/tmp/zoom-desktop-5.14.7.2928-amd64.deb', ensure => present, } exec { 'install-zoom': command => '/usr/bin/dpkg -i /tmp/zoom-desktop-5.14.7.2928-amd64.deb', logoutput => true, }
+Remove:
+package { 'zoom': ensure => 'absent', }
