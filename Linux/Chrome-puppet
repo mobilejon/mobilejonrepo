@@ -1,0 +1,9 @@
+Install:
+file { 'google-chrome-stable_current_amd64.deb': source => 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb', 
+path => '/tmp/google-chrome-stable_current_amd64.deb', 
+ensure => present, } 
+exec { 'install-chrome': command => '/usr/bin/dpkg -i /tmp/google-chrome-stable_current_amd64.deb', 
+logoutput => true, }
+
+Remove:
+package { 'google-chrome-stable': ensure => 'absent', }
