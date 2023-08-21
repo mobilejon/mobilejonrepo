@@ -1,0 +1,90 @@
+#----------------------------------------------------------[Declarations]----------------------------------------------------------
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+#-----------------------------------------------------------[Functions]------------------------------------------------------------
+$Username = Read-Host -Prompt 'Enter the Username'
+$Password = Read-Host -Prompt 'Enter the Password' -AsSecureString
+$apikey = Read-Host -Prompt 'Enter the API Key'
+    #Convert the Password
+    $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password)
+    $UnsecurePassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+
+
+    #Base64 Encode AW Username and Password
+    $combined = $Username + ":" + $UnsecurePassword
+    $encoding = [System.Text.Encoding]::ASCII.GetBytes($combined)
+    $cred = [Convert]::ToBase64String($encoding)
+
+
+    $script:header = @{
+    "Authorization"  = "Basic $cred";
+    "aw-tenant-code" = $apikey;}
+   
+##$devices = Invoke-RestMethod -Method Get -Uri https://XXXX.awmdm.com/api/mdm/devices/search?lgid=XXXXX -ContentType "application/json" -Header $header
+$url = 'https://XXXX.awmdm.com/API/mdm/devices/search'
+$resultsPage = Invoke-RestMethod -Method Get -Headers $header -ContentType "application/json" -Uri $url
+$allpages = New-Object System.Collections.ArrayList @()
+$page = [math]::Ceiling($resultsPage.total / 500)
+
+##Open Runspace##
+$pool = [RunspaceFactory]::CreateRunspacePool(1, [int]$env:NUMBER_OF_PROCESSORS + 1)
+$pool.ApartmentState = "MTA"
+$pool.Open()
+$runspaces = @()
+
+$scriptblock = {
+    Param (
+        $i,
+        $url,
+        $header,
+        $allPages
+        )
+         
+$url = $url + "?page=" + $i
+$content = Invoke-RestMethod -Method Get -Uri $url -ContentType "application/json" -Header $header
+$content = $content.devices
+
+foreach ($ContentPage in $Content) {
+    $null = $allPages.Add($ContentPage)
+}
+}
+for($i=0; $i -le $page; $i++) {
+$runspace = [PowerShell]::Create()
+$null = $runspace.AddScript($scriptblock)
+$null = $runspace.AddArgument($i)
+$null = $runspace.AddArgument($url)
+$null = $runspace.AddArgument($header)
+$null = $runspace.AddArgument($allPages)
+$runspace.RunspacePool = $pool
+$runspaces += [PSCustomObject]@{ Pipe = $runspace; Status = $runspace.BeginInvoke() }
+}
+while ($runspaces.Status -ne $null)
+{
+    $completed = $runspaces | Where-Object { $_.Status.IsCompleted -eq $true}
+    foreach ($runspace in $completed)
+    {
+    $runspace.Pipe.EndInvoke($runspace.Status)
+    $runspace.Status = $null
+    }
+    }
+    ##Close Runspace
+    $pool.Close()
+    $pool.Dispose()
+
+$devicelist = $allpages | where-object -filterscript {$_.enrollmentstatus -eq "Enrolled"}
+
+
+$devices = $devicelist.id.value
+
+Write-Host "Device Query is in Progress"
+
+foreach ($device in $devices) { invoke-restmethod -Method Post -Uri https://XXXX.awmdm.com/api/mdm/devices/$device/commands?command=DeviceQuery -ContentType "application/json" -Header $header | Out-Null }
+
+Write-Host "Device Query Done"
+
+Write-Host "Device Sync is in Progress"
+
+foreach ($device in $devices) { invoke-restmethod -Method Post -Uri https://XXXX.awmdm.com/api/mdm/devices/$device/commands?command=SyncDevice -ContentType "application/json" -Header $header | Out-Null }
+
+
+Write-Host "Device Sync Done"
+
