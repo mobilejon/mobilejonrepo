@@ -6,7 +6,6 @@ Intune Tenant-to-Tenant Migration Solution leverages the Microsoft Graph API to 
 USE
 This script is packaged along with the other files into an intunewin file.  The intunewin file is then uploaded to Intune and assigned to a group of devices.  The script is then run on the device to start the migration process.
 
-
 NOTES
 When deploying with Microsoft Intune, the install command must be "%WinDir%\Sysnative\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File startMigrate.ps1" to ensure the script runs in 64-bit mode.
 .OWNER
@@ -16,10 +15,8 @@ Logan Lautt
 Jesse Weimer
 #>
 
-
 $ErrorActionPreference = "SilentlyContinue"
 # CMDLET FUNCTIONS
-
 
 # set log function
 function log()
@@ -34,7 +31,6 @@ function log()
     Write-Output "$ts $message"
 }
 
-
 # get dsreg status
 function joinStatus()
 {
@@ -48,7 +44,6 @@ function joinStatus()
     return $status
 }
 
-
 # function get admin status
 function getAdminStatus()
 {
@@ -59,7 +54,6 @@ function getAdminStatus()
     log "Administrator account is $($adminStatus)."
     return $adminStatus
 }
-
 
 # generate random password
 function generatePassword {
@@ -75,7 +69,6 @@ function generatePassword {
     return $securePassword
 }
 
-
 function DeleteWS1Device {
     param(
         [string]$Username = "",
@@ -83,15 +76,12 @@ function DeleteWS1Device {
         [string]$Password = ''
     )
 
-
     # Securely convert the password
     $PasswordSecureString = ConvertTo-SecureString -String $Password -AsPlainText -Force
     $Credential = New-Object System.Management.Automation.PSCredential($Username, $PasswordSecureString)
 
-
     # Get the serial number of the device
     $serialNumber = (Get-WmiObject -Class Win32_BIOS).SerialNumber
-
 
     # Encode credentials to Base64 for Basic Auth
     $bytes = [System.Text.Encoding]::ASCII.GetBytes($Credential.UserName + ':' + $Credential.GetNetworkCredential().Password)
@@ -105,18 +95,14 @@ function DeleteWS1Device {
         "Content-Type" = "application/json"
     }
 
-
     # Invoke the REST method to delete the device
     $uri = "https://xxxxx.awmdm.com/API/mdm/devices?id=$serialNumber&searchby=Serialnumber"
     Invoke-RestMethod -Method Delete -Uri $uri -ContentType "application/json" -Header $headers
 }
 
-
 # END CMDLET FUNCTIONS
 
-
 # SCRIPT FUNCTIONS START
-
 
 #  get json settings
 function getSettingsJSON()
@@ -127,7 +113,6 @@ function getSettingsJSON()
     $global:settings = Get-Content -Path "$($PSScriptRoot)\$($json)" | ConvertFrom-Json
     return $settings
 }
-
 
 # initialize script
 function initializeScript()
@@ -157,7 +142,6 @@ function initializeScript()
     return $localPath
 }
 
-
 # copy package files
 function copyPackageFiles()
 {
@@ -167,7 +151,6 @@ function copyPackageFiles()
     Copy-Item -Path "$($PSScriptRoot)\*" -Destination $destination -Recurse -Force
     log "Copied files to $($destination)."
 }
-
 
 # authenticate to source tenant
 function msGraphAuthenticate()
@@ -180,17 +163,13 @@ function msGraphAuthenticate()
     $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
     $headers.Add("Content-Type", "application/x-www-form-urlencoded")
 
-
     $body = "grant_type=client_credentials&scope=https://graph.microsoft.com/.default"
     $body += -join ("&client_id=" , $clientId, "&client_secret=", $clientSecret)
 
-
     $response = Invoke-RestMethod "https://login.microsoftonline.com/$tenant/oauth2/v2.0/token" -Method 'POST' -Headers $headers -Body $body
-
 
     #Get Token form OAuth.
     $token = -join ("Bearer ", $response.access_token)
-
 
     #Reinstantiate headers.
     $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
@@ -199,7 +178,6 @@ function msGraphAuthenticate()
     log "MS Graph Authenticated"
     $global:headers = $headers
 }
-
 
 # get device info
 function getDeviceInfo()
@@ -219,7 +197,6 @@ function getDeviceInfo()
         log "$($key): $($deviceInfo[$key])"
     }
 }
-
 
 # get original user info
 function getOriginalUserInfo()
@@ -251,7 +228,6 @@ function getOriginalUserInfo()
         }
     }
 }
-
 
 # get device info from source tenant
 function getDeviceGraphInfo()
@@ -314,7 +290,6 @@ function getDeviceGraphInfo()
     }
 }
 
-
 # set account creation policy
 function setAccountConnection()
 {
@@ -335,7 +310,6 @@ function setAccountConnection()
         log "Set $($regName) to $($regValue) at $regPath."
     }
 }
-
 
 # set dont display last user name policy
 function dontDisplayLastUsername()
@@ -358,7 +332,6 @@ function dontDisplayLastUsername()
     }
 }
 
-
 # remove mdm certificate
 function removeMDMCertificate()
 {
@@ -369,7 +342,6 @@ function removeMDMCertificate()
     Get-ChildItem -Path $certPath | Where-Object { $_.Issuer -match $issuer } | Remove-Item -Force
     log "Removed $($issuer) certificate."
 }
-
 
 # remove mdm enrollment
 function removeMDMEnrollments()
@@ -406,7 +378,6 @@ function removeMDMEnrollments()
     }
 }
 
-
 # remove mdm scheduled tasks
 function removeMDMTasks()
 {
@@ -438,7 +409,6 @@ function removeMDMTasks()
     }
 }
 
-
 # set post migration tasks
 function setPostMigrationTasks()
 {
@@ -461,7 +431,6 @@ function setPostMigrationTasks()
     }
 }
 
-
 # check for AAD join and remove
 function leaveAazureADJoin() {
     param (
@@ -482,7 +451,6 @@ function leaveAazureADJoin() {
         log "$hostname is not Azure AD joined."
     }
 }
-
 
 # check for domain join and remove
 function unjoinDomain()
@@ -522,7 +490,6 @@ function unjoinDomain()
     }
 }
 
-
 # install provisioning package
 function InstallPPKGPackage()
 {
@@ -532,7 +499,7 @@ function InstallPPKGPackage()
     )
     if($ppkg)
     {
-        Install-ProvisioningPackage -PackagePath $ppkg -QuietInstall -Force
+        Install-ProvisioningPackage -PackagePath $ppkg -QuietInstall -ForceInstall
         log "Installed provisioning package."
     }
     else 
@@ -541,8 +508,6 @@ function InstallPPKGPackage()
     }
     
 }
-
-
 # delete graph objects in source tenant
 function deleteGraphObjects()
 {
@@ -574,7 +539,6 @@ function deleteGraphObjects()
     }
 }
 
-
 # revoke logon provider
 function revokeLogonProvider()
 {
@@ -586,7 +550,6 @@ function revokeLogonProvider()
     reg.exe add $logonProviderPath /v $logonProviderName /t REG_DWORD /d $logonProviderValue /f | Out-Host
     log "Revoked logon provider."
 }
-
 
 # set auto logon policy
 function setAutoLogon()
@@ -605,14 +568,12 @@ function setAutoLogon()
     Add-LocalGroupMember -Group "Administrators" -Member $migrationAdmin
     log "Migration admin account created: $($migrationAdmin)."
 
-
     log "Setting auto logon..."
     reg.exe add $autoLogonPath /v $autoLogonName /t REG_SZ /d $autoLogonValue /f | Out-Host
     reg.exe add $autoLogonPath /v $defaultUserName /t REG_SZ /d $migrationAdmin /f | Out-Host
     reg.exe add $autoLogonPath /v $defaultPW /t REG_SZ /d "@Password*123" /f | Out-Host
     log "Set auto logon to $($migrationAdmin)."
 }
-
 
 # set lock screen caption
 function setLockScreenCaption()
@@ -632,9 +593,7 @@ function setLockScreenCaption()
 }
 
 
-
 # SCRIPT FUNCTIONS END
-
 
 # run getSettingsJSON
 try 
@@ -649,7 +608,6 @@ catch
     log "Exiting script."
     Exit 1  
 }
-
 
 # run initializeScript
 try 
@@ -678,7 +636,6 @@ catch
     Exit 1
 }
 
-
 # run msGraphAuthenticate
 try 
 {
@@ -692,7 +649,6 @@ catch
     log "Exiting script."
     Exit 1
 }
-
 
 # run getDeviceInfo
 try 
@@ -708,7 +664,6 @@ catch
     Exit 1
 }
 
-
 # run getOriginalUserInfo
 try 
 {
@@ -723,7 +678,6 @@ catch
     Exit 1
 }
 
-
 # run getDeviceGraphInfo
 try 
 {
@@ -736,7 +690,6 @@ catch
     log "Failed to get device graph info: $message."
     log "WARNING: Validate device integrity post migration."
 }
-
 
 # run setAccountConnection
 try 
@@ -751,7 +704,6 @@ catch
     log "WARNING: Validate device integrity post migration."
 }
 
-
 # run dontDisplayLastUsername
 try 
 {
@@ -765,7 +717,6 @@ catch
     log "WARNING: Validate device integrity post migration."
 }
 
-
 # run removeMDMCertificate
 try 
 {
@@ -778,7 +729,6 @@ catch
     log "Failed to remove MDM certificate: $message."
     log "WARNING: Validate device integrity post migration."
 }
-
 
 # run removeMDMEnrollments
 try 
@@ -794,7 +744,6 @@ catch
     Exit 1
 }
 
-
 # run removeMDMTasks
 try 
 {
@@ -807,7 +756,6 @@ catch
     log "Failed to remove MDM tasks: $message."
     log "Warning: Validate device integrity post migration."
 }
-
 
 # run setPostMigrationTasks
 try 
@@ -823,7 +771,6 @@ catch
     Exit 1
 }
 
-
 # run leaveAazureADJoin
 try 
 {
@@ -838,7 +785,6 @@ catch
     Exit 1
 }
 
-
 # run unjoinDomain
 try 
 {
@@ -851,7 +797,6 @@ catch
     log "Failed to unjoin domain: $message."
     log "WARNING: Validate device integrity post migration."
 }
-
 
 # run InstallPPKGPackage
 try 
@@ -867,7 +812,6 @@ catch
     Exit 1
 }
 
-
 # run DeleteWS1Device 
 try 
 {
@@ -880,7 +824,6 @@ catch
     log "Failed to delete graph objects: $message."
     log "WARNING: Validate device integrity post migration."
 }
-
 
 # run revokeLogonProvider
 try 
@@ -895,7 +838,6 @@ catch
     log "WARNING: Validate device integrity post migration."
 }
 
-
 # run setAutoLogon
 try 
 {
@@ -908,7 +850,6 @@ catch
     log "Failed to set auto logon: $message."
     log "WARNING: Validate device integrity post migration."
 }
-
 
 # run setLockScreenCaption
 try 
@@ -923,12 +864,9 @@ catch
     log "WARNING: Validate device integrity post migration."
 }
 
-
 # run reboot
 log "Rebooting device..."
 shutdown -r -t 30
 
-
 # end transcript
 Stop-Transcript
- 
