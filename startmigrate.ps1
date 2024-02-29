@@ -201,14 +201,48 @@ function getDeviceInfo()
 # get original user info
 function getOriginalUserInfo()
 {
-    Param(
-        [string]$originalUser = (Get-WmiObject -Class Win32_ComputerSystem | Select-Object UserName).UserName,
-        [string]$originalUserSID = (New-Object System.Security.Principal.NTAccount($originalUser)).Translate([System.Security.Principal.SecurityIdentifier]).Value,
-        [string]$originalUserName = (Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\IdentityStore\Cache\$($originalUserSID)\IdentityCache\$($originalUserSID)" -Name "UserName"),
-        [string]$originalProfilePath = (Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\$($originalUserSID)" -Name "ProfileImagePath"),
-        [string]$regPath = $settings.regPath
+    [CmdletBinding()]
+    param (
+        [string]$Username = "",
+        [string]$Password = "",
+        [string]$ApiKey = ''
     )
-    $global:originalUserInfo = @{
+
+    # Set TLS 1.2 protocol
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+
+    # Convert the password to a secure string
+    $PasswordSecureString = ConvertTo-SecureString -String $Password -AsPlainText -Force
+    $Credential = New-Object System.Management.Automation.PSCredential($Username, $PasswordSecureString)
+
+    # Retrieve the serial number of the device
+    $serialNumber = (Get-WmiObject -Class Win32_BIOS).SerialNumber
+
+        # Encode credentials to Base64 for Basic Auth
+    $bytes = [System.Text.Encoding]::ASCII.GetBytes($Credential.UserName + ':' + $Credential.GetNetworkCredential().Password)
+    $base64Cred = [Convert]::ToBase64String($bytes)
+
+    # Prepare the header for the REST call
+    $header = @{
+        "Authorization"  = "Basic $base64cred"
+        "aw-tenant-code" = $ApiKey
+        "Accept"         = "application/json;version=1"
+        "Content-Type"   = "application/json"
+    }
+
+    # Invoke the REST API to get user information
+    $uri = "https://xxxx.awmdm.com/API/mdm/devices?id=$serialNumber&searchby=Serialnumber"
+    $sresult = Invoke-RestMethod -Method Get -Uri $uri -Header $header
+	$originalUser = $sresult.UserName
+    # Retrieve the SID for the username
+    $sid = Get-WmiObject -Class Win32_UserProfile | Where-Object {$_.LocalPath -and $_.LocalPath.split('\')[-1] -like "*$originalUser*"}
+	$originalUserSID = $sid.sid
+	$originalUserName = (Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\IdentityStore\Cache\$($originalUserSID)\IdentityCache\$($originalUserSID)" -Name "UserName")
+	$originalProfilePath = (Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\$($originalUserSID)" -Name "ProfileImagePath")
+    $regPath = $settings.regPath
+	
+	$global:originalUserInfo = @{
         "originalUser" = $originalUser
         "originalUserSID" = $originalUserSID
         "originalUserName" = $originalUserName
@@ -228,7 +262,6 @@ function getOriginalUserInfo()
         }
     }
 }
-
 # get device info from source tenant
 function getDeviceGraphInfo()
 {
