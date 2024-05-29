@@ -29,9 +29,13 @@ $attemptNumber = 1
 $maxRetries = 30
 $sleepDurationInSeconds = 5
 $keytabFile = $confDir+'\krb5.keytab'
+$password = Read-Host -Prompt 'Enter the Service Account Password'
+
 
 # Fully qualify ktpass command, System32 may not be in the path
 $ktpass = "$Env:SystemRoot\System32\ktpass.exe"
+
+#Generate the Keytab
 
 Do
 {
