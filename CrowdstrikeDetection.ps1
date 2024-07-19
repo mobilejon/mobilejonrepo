@@ -20,10 +20,11 @@ foreach ($file in $files) {
     }
 }
 
-# Output the problematic files
+# Output the problematic files and set exit code
 if ($problematicFiles.Count -gt 0) {
     Write-Output "Problematic files detected:"
     $problematicFiles | ForEach-Object { Write-Output $_.FullName }
+    exit 1
 } else {
     Write-Output "No problematic files detected."
 }
