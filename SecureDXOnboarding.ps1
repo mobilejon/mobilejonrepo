@@ -68,47 +68,46 @@ function install_srm {
     Start-Process -FilePath "$output" -ArgumentList "/S"
 }
 
-if ($service -eq $null) {
-    # Service does not exist, proceed to install SRM
-    if (-not (Test-Path $folderPath)) {
-        New-Item -ItemType Directory -Path $folderPath -Force
-    }
+try {
+    if ($service -eq $null) {
+        # Service does not exist, proceed to install SRM
+        if (-not (Test-Path $folderPath)) {
+            New-Item -ItemType Directory -Path $folderPath -Force
+        }
 
-    $AdminGroupSID = "S-1-5-32-544"
-    $AdminGroup = New-Object System.Security.Principal.SecurityIdentifier($AdminGroupSID)
-    $FolderAcl = Get-Acl -Path $FolderPath
-    $AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($AdminGroup, "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
-    $NewAcl = New-Object System.Security.AccessControl.DirectorySecurity
-    $NewAcl.SetAccessRuleProtection($true, $false)
-    $NewAcl.AddAccessRule($AccessRule)
-    Set-Acl -Path $FolderPath -AclObject $NewAcl
-    (Get-Acl -Path $FolderPath).AccessToString
+        $AdminGroupSID = "S-1-5-32-544"
+        $AdminGroup = New-Object System.Security.Principal.SecurityIdentifier($AdminGroupSID)
+        $FolderAcl = Get-Acl -Path $FolderPath
+        $AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($AdminGroup, "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
+        $NewAcl = New-Object System.Security.AccessControl.DirectorySecurity
+        $NewAcl.SetAccessRuleProtection($true, $false)
+        $NewAcl.AddAccessRule($AccessRule)
+        Set-Acl -Path $FolderPath -AclObject $NewAcl
+        (Get-Acl -Path $FolderPath).AccessToString
 
-    Invoke-WebRequest -Uri $urlfileversion -OutFile $outputfileversion
+        Invoke-WebRequest -Uri $urlfileversion -OutFile $outputfileversion
 
-    $severlastversion = Get-Content "$latest_version"
+        $severlastversion = Get-Content "$latest_version"
 
-    if ((Test-Path $file_path)) {
-        $file_version = (Get-Item $file_path).VersionInfo.FileVersion
+        if ((Test-Path $file_path)) {
+            $file_version = (Get-Item $file_path).VersionInfo.FileVersion
+        } else {
+            $file_version = "0.0.0.0"
+        }
+
+        # Check the file version and run the corresponding function
+        if ($file_version -lt $severlastversion) {
+            install_srm
+        } else {
+            Write-Host "ok"
+        }
+
+        Write-Output -InputObject "### SIP EVENT BEGINS ###`nThis device has been successfully onboarded to Secure DX`n### SIP EVENT ENDS ###"
     } else {
-        $file_version = "0.0.0.0"
+        Write-Host "Service CUPSDXAgent already exists."
     }
-
-    # Check the file version and run the corresponding function
-    if ($file_version -lt $severlastversion) {
-        install_srm
-    } else {
-        Write-Host "ok"
-    }
-     Write-Output -InputObject "### SIP EVENT BEGINS ###`nThis device has been successfully onboarded to Secure DX`n### SIP EVENT ENDS ###"
 }
 catch {
-   Write-Output -InputObject "### SIP EVENT BEGINS ###`Oh no! your install has failed!n### SIP EVENT ENDS ###"
-}
-    Write-Output("### SIP EVENT BEGINS ###")
-    # Write event text to stdout here
-    Write-Output("### SIP EVENT ENDS ###")
-} else {
-    Write-Host "Service CUPSDXAgent already exists."
+    Write-Output -InputObject "### SIP EVENT BEGINS ###`nOh no! Your install has failed!`n### SIP EVENT ENDS ###"
 }
 
