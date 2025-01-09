@@ -3,7 +3,7 @@ $Prefix = ""
 Write-Host $Prefix
 $details = Get-ComputerInfo
 if (($Prefix -ne "") -and (-not $details.CsName.StartsWith($Prefix))) {
-    Write-Host "Device name doesn't match specified prefix, bailing out. Prefix=$Prefix ComputerName=$($details.CsName)"
+    Write-Host "Device name doesn't match specified prefix, time to update!"
     Exit 1
 }
  else {
