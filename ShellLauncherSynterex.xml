@@ -9,8 +9,8 @@
   </Profiles>
     <Configs>
     <Config>
-      <AutoLogonAccount rs5:DisplayName="CloudPC Kiosk" />
-      <DefaultProfile Id="{64f010ec-c145-4a16-941c-3c245f433a5a}" />
+      <AutoLogonAccount />
+      <Profile Id="{64f010ec-c145-4a16-941c-3c245f433a5a}" />
     </Config>
   </Configs>
 </ShellLauncherConfiguration>
