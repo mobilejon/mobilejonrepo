@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ShellLauncherConfiguration xmlns="http://schemas.microsoft.com/ShellLauncher/2018/Configuration" xmlns:V2="http://schemas.microsoft.com/ShellLauncher/2019/Configuration">
+  <Profiles>
+    <Profile Id="{64f010ec-c145-4a16-941c-3c245f433a5a}" Name="Windows 365 App">
+      <Shell Shell="MicrosoftCorporationII.Windows365_8wekyb3d8bbwe!Windows365" V2:AppType="UWP">
+        <DefaultAction Action="RestartShell" />
+      </Shell>
+	  </Profile>
+  </Profiles>
+    <Configs>
+    <Config>
+      <AutoLogonAccount rs5:DisplayName="CloudPC Kiosk" />
+      <DefaultProfile Id="{64f010ec-c145-4a16-941c-3c245f433a5a}" />
+    </Config>
+  </Configs>
+</ShellLauncherConfiguration>
