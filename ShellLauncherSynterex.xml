@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ShellLauncherConfiguration xmlns="http://schemas.microsoft.com/ShellLauncher/2018/Configuration" xmlns:V2="http://schemas.microsoft.com/ShellLauncher/2019/Configuration">
   <Profiles>
-    <Profile Id="{64f010ec-c145-4a16-941c-3c245f433a5a}" Name="Windows 365 App">
-      <Shell Shell="MicrosoftCorporationII.Windows365_8wekyb3d8bbwe!Windows365" V2:AppType="UWP">
+      <DefaultProfile>
+      <Shell Shell="%systemroot%\explorer.exe">
+        <DefaultAction Action="RestartShell"/>
+      </Shell>
+    </DefaultProfile>
+    <Profile Id="{814B6409-8C51-4EE2-95F8-DB39B70F5F68}">
+      <Shell Shell="Microsoft.WindowsNotepad_8wekyb3d8bbwe!App" V2:AppType="UWP">
         <DefaultAction Action="RestartShell" />
       </Shell>
 	  </Profile>
@@ -10,7 +15,7 @@
     <Configs>
     <Config>
       <AutoLogonAccount />
-      <Profile Id="{64f010ec-c145-4a16-941c-3c245f433a5a}" />
+      <Profile Id="{814B6409-8C51-4EE2-95F8-DB39B70F5F68}" />
     </Config>
   </Configs>
 </ShellLauncherConfiguration>
