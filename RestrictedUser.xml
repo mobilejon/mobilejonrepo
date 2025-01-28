@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssignedAccessConfiguration xmlns="http://schemas.microsoft.com/AssignedAccess/2017/config" xmlns:v5="http://schemas.microsoft.com/AssignedAccess/2022/config" xmlns:rs5="http://schemas.microsoft.com/AssignedAccess/201810/config">
+<Profiles>
+    <Profile Id="{64f010ec-c145-4a16-941c-3c245f435d6a}">
+<AllAppsList>
+  <AllowedApps>
+    <App AppUserModelId="Microsoft.WindowsCalculator_8wekyb3d8bbwe!App" />
+    <App DesktopAppPath="C:\Windows\system32\cmd.exe" />
+    <App DesktopAppPath="%windir%\explorer.exe" />
+    <App AppUserModelId="%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe" />
+  </AllowedApps>
+</AllAppsList>
+<v5:StartPins>
+<![CDATA[
+{"pinnedList":[{"packagedAppId":"MicrosoftCorporationII.Windows365_8wekyb3d8bbwe!Windows365"},
+{"desktopAppLink":"%ALLUSERSPROFILE%\\Microsoft\\Windows\\Start Menu\\Programs\\Microsoft Edge.lnk"}]}
+  ]]>
+</v5:StartPins>
+<Taskbar ShowTaskbar="true" />
+<v5:TaskbarLayout><![CDATA[
+  <?xml version="1.0" encoding="utf-8"?>
+  <LayoutModificationTemplate
+      xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification"
+      xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout"
+      xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout"
+      xmlns:taskbar="http://schemas.microsoft.com/Start/2014/TaskbarLayout"
+      Version="1">
+  <CustomTaskbarLayoutCollection PinListPlacement="Replace">
+    <defaultlayout:TaskbarLayout>
+    <taskbar:TaskbarPinList>
+        <taskbar:DesktopApp DesktopApplicationLinkPath="%ALLUSERSPROFILE%\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk"/>
+    </taskbar:TaskbarPinList>
+    </defaultlayout:TaskbarLayout>
+  </CustomTaskbarLayoutCollection>
+  </LayoutModificationTemplate>
+  ]]>
+</v5:TaskbarLayout>
+</Profile>
+</Profiles>
+  <Configs>
+    <Config>
+      <AutoLogonAccount rs5:DisplayName="CloudPC Kiosk" />
+      <DefaultProfile Id="{64f010ec-c145-4a16-941c-3c245f435d6a}" />
+    </Config>
+  </Configs>
+</AssignedAccessConfiguration>
