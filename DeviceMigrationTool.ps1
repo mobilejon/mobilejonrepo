@@ -29,11 +29,10 @@ $username = Read-Host -Prompt 'Enter the username for the device you want to mig
 ##Get the Device ID with the Serial Number##
 
 $deviceresults = Invoke-RestMethod -Headers $header -method Get "https://$apihost/API/mdm/devices?searchby=SerialNumber&id=$serialnumber"
-$deviceid = $deviceresults.id.value
-
+$deviceid = $DeviceResults.Device.id.'#text'
 ##Get the User ID##
 $userresults = Invoke-RestMethod -headers $header -Uri "https://$apihost/API/system/users/search?username=$username"
-$userid = $userresults.users.id.value
+$userid = $userresults.UserSearchResult.Users.id.'#text'
 ##Migrate the Device##
 Invoke-RestMethod -Headers $header -method Patch https://$apihost/API/mdm/devices/$deviceid/enrollmentuser/$userid
 ##Query and Sync Device##
