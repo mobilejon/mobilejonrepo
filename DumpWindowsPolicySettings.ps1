@@ -20,7 +20,7 @@ $Username = Read-Host -Prompt 'Enter the Username'
 
 ##Prompt for the API hostname##
 $apihost = Read-Host -Prompt 'Enter your API server hostname'
-
+$apiBase     = "https://$apihost"
 # ===================== GET WINDOWS PROFILES VIA API =====================
 try {
   $Profiles = Invoke-RestMethod -Headers $header -Uri "$apiBase/API/mdm/profiles/search"
