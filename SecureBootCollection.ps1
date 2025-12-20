@@ -23,12 +23,9 @@ $Secret    = ""      # Client secret VALUE
 
 $DceLogsIngestionUri = ""
 $DcrImmutableId      = ""
-$StreamName          = "Custom-SecureBootServicing_CL"
+$StreamName = ""
 
 $RegPath = "HKLM:\SYSTEM\CurrentControlSet\Control\SecureBoot\Servicing"
-
-# Troubleshooting switch: set to $true to send a known-good payload (no registry read needed)
-$UseDebugPayload = $false
 
 # Optional: enforce TLS 1.2 (safe default)
 try { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 } catch {}
@@ -36,6 +33,35 @@ try { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::
 # Normalize DCE URI (avoid accidental double-slashes)
 $DceLogsIngestionUri = $DceLogsIngestionUri.TrimEnd("/")
 
+# ----------------------------
+# Ensure Get-UEFICertificate is available
+# ----------------------------
+function Ensure-GetUefiCertificate {
+    if (Get-Command -Name Get-UEFICertificate -ErrorAction SilentlyContinue) {
+        return
+    }
+
+    # Try to install once if missing. This may require admin rights and PSGallery access.
+    Write-Host "Get-UEFICertificate not found. Installing Get-UEFICertificate..."
+    try {
+        # Ensure NuGet provider exists
+        if (-not (Get-PackageProvider -Name NuGet -ErrorAction SilentlyContinue)) {
+            Install-PackageProvider -Name NuGet -Force | Out-Null
+        }
+
+        # Ensure PSGallery is trusted (optional; remove if you prefer prompts)
+        try { Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted -ErrorAction SilentlyContinue } catch {}
+
+        Install-Script -Name Get-UEFICertificate -Force -Scope AllUsers
+    }
+    catch {
+        throw "Failed to install Get-UEFICertificate. Preinstall it on the machine or ensure PSGallery access. Error: $($_.Exception.Message)"
+    }
+
+    if (-not (Get-Command -Name Get-UEFICertificate -ErrorAction SilentlyContinue)) {
+        throw "Get-UEFICertificate still not available after install attempt."
+    }
+}
 
 function Get-LogsIngestionToken {
     param(
@@ -67,6 +93,28 @@ function Get-LogsIngestionToken {
 function Get-SecureBootServicingRecord {
     param([Parameter(Mandatory)][string]$RegPath)
 
+    # --- KEK data (collected here to avoid scope issues) ---
+    $kekThumbprint = $null
+    $kekIssued     = $null
+    $kekExpires    = $null
+
+    try {
+        Ensure-GetUefiCertificate
+        $kek = Get-UEFICertificate -Type KEK
+
+        # Depending on the script version, these properties may vary.
+        # These are the typical names used by Richard Hicks' script.
+        if ($kek) {
+            $kekThumbprint = $kek.Thumbprint
+            $kekIssued     = $kek.Issued
+            $kekExpires    = $kek.Expires
+        }
+    }
+    catch {
+        # Don't fail ingestion if KEK read fails; just send nulls.
+        Write-Warning "Unable to collect KEK certificate data: $($_.Exception.Message)"
+    }
+
     # Build record with stable schema (all fields always present)
     $record = [ordered]@{
         TimeGenerated            = (Get-Date).ToUniversalTime().ToString("o")  # ISO 8601 UTC
@@ -74,6 +122,9 @@ function Get-SecureBootServicingRecord {
         RegistryPath             = $RegPath
         UEFICA2023Status         = $null
         WindowsUEFICA2023Capable = $null
+        KEK_Thumbprint           = $kekThumbprint
+        KEK_IssueDate            = if ($kekIssued)  { (Get-Date $kekIssued).ToUniversalTime().ToString("o") } else { $null }
+        KEK_ExpirationDate       = if ($kekExpires) { (Get-Date $kekExpires).ToUniversalTime().ToString("o") } else { $null }
     }
 
     if (-not (Test-Path -Path $RegPath)) {
@@ -102,10 +153,7 @@ function Send-ToLogAnalyticsViaDcr {
         [Parameter(Mandatory)][string]$JsonPayload
     )
 
-    # IMPORTANT: braces prevent PowerShell from eating ?api-version as part of the variable name
     $uri = "$DceLogsIngestionUri/dataCollectionRules/$DcrImmutableId/streams/${StreamName}?api-version=2023-01-01"
-
-    # Make URI visible + accessible after execution
     $global:LastIngestionUri = $uri
 
     Write-Host "POST URI: $uri"
@@ -118,7 +166,6 @@ function Send-ToLogAnalyticsViaDcr {
 
         Write-Host "HTTP Status: $($resp.StatusCode)"
 
-        # Helpful headers (may or may not be present)
         $reqId  = $resp.Headers["x-ms-request-id"]
         $corrId = $resp.Headers["x-ms-correlation-request-id"]
         if ($reqId)  { Write-Host "x-ms-request-id: $reqId" }
@@ -129,7 +176,6 @@ function Send-ToLogAnalyticsViaDcr {
     catch {
         $msg = $_.Exception.Message
 
-        # If response exists, surface status code + response body
         if ($_.Exception.Response) {
             try {
                 $status = [int]$_.Exception.Response.StatusCode
@@ -157,26 +203,20 @@ function Send-ToLogAnalyticsViaDcr {
 # ----------------------------
 # MAIN
 # ----------------------------
+if ([string]::IsNullOrWhiteSpace($TenantId) -or
+    [string]::IsNullOrWhiteSpace($ClientId) -or
+    [string]::IsNullOrWhiteSpace($Secret)) {
+    throw "TenantId, ClientId, and Secret must be filled in."
+}
+
 Write-Host "Acquiring token..."
 $token = Get-LogsIngestionToken -TenantId $TenantId -ClientId $ClientId -ClientSecret $Secret
 
-# Build payload
-if ($UseDebugPayload) {
-    Write-Host "Using DEBUG payload (no registry read)."
-    $record = [ordered]@{
-        TimeGenerated            = (Get-Date).ToUniversalTime().ToString("o")
-        Hostname                 = $env:COMPUTERNAME
-        RegistryPath             = $RegPath
-        UEFICA2023Status         = "test"
-        WindowsUEFICA2023Capable = "test"
-    }
-} else {
-    Write-Host "Collecting registry values from: $RegPath"
-    $record = Get-SecureBootServicingRecord -RegPath $RegPath
-}
+Write-Host "Collecting registry + KEK values..."
+$record = Get-SecureBootServicingRecord -RegPath $RegPath
 
 # Logs Ingestion expects an array
-$payload = ConvertTo-Json -InputObject @($record) -Depth 6
+$payload = ConvertTo-Json -InputObject @($record) -Depth 8
 
 Write-Host "Sending record to Log Analytics..."
 $ok = Send-ToLogAnalyticsViaDcr `
@@ -189,5 +229,3 @@ $ok = Send-ToLogAnalyticsViaDcr `
 Write-Host "Success: $ok"
 Write-Host "LastIngestionUri (debug): $global:LastIngestionUri"
 Write-Host ""
-Write-Host "Validate in Log Analytics (after 2–10 minutes) with:"
-Write-Host "  SecureBootServicing_CL | where ingestion_time() > ago(2h) | order by ingestion_time() desc"
